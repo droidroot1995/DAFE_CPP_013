@@ -246,7 +246,7 @@ double term ()
       int i2 = narrow_cast<int> (primary());
       if (i2 == 0) error ("% : divide by zero");
       left = il % i2;
-      t = ts.get();
+      // t = ts.get();
       break;
     }
 
