@@ -6,7 +6,7 @@
   We have inserted 3 bugs that the compiler will catch and 3 that it won't.
 */
 
-#include "std_lib_facilities.h"
+#include <std_lib_facilities.h>
 
 
 struct Token
@@ -22,9 +22,6 @@ struct Token
   Token (char ch, double val)
     : kind{ ch }, value{ val }
   { }
-  Token (char ch , string n)
-     : kind{ch} , name{n}
-  { }
 };
 
 
@@ -39,7 +36,7 @@ public:
   Token get ();
   void putback (Token t);
 
-  void ignore (char c);
+  void ignore (char);
 };
 
 
@@ -155,7 +152,7 @@ double get_value (string s)
 
 void set_value (string s, double d)
 {
-  for (int i = 0; i < var_table.size(); ++i)
+  for (int i = 0; i <= var_table.size(); ++i)
   {
     if (var_table[i].name == s)
     {
@@ -199,8 +196,7 @@ double primary ()
     double d = expression();
     t = ts.get();
     if (t.kind != ')')
-      error("')' expected");
-    return d;
+      error("'(' expected");
   }
 
   case '-':
@@ -226,6 +222,7 @@ double term ()
   while (true)
   {
     Token t = ts.get();
+
     switch (t.kind)
     {
     case '*':
@@ -237,16 +234,6 @@ double term ()
       double d = primary();
       if (d == 0) error("divide by zero");
       left /= d;
-      break;
-    }
-
-    case '%':
-    {
-      int il = narrow_cast<int> (left) ;
-      int i2 = narrow_cast<int> (primary());
-      if (i2 == 0) error ("% : divide by zero");
-      left = il % i2;
-      t = ts.get();
       break;
     }
 
@@ -323,7 +310,7 @@ void clean_up_mess ()
 
 void calculate ()
 {
-  while (cin)
+  while (true)
   try
   {
     cout << prompt;
@@ -350,19 +337,14 @@ try
   define_name ("e",  2.718281828459045);
 
   calculate();
-
-  keep_window_open();
-  return 0;
 }
 catch (exception& e)
 {
   cerr << "exception: " << e.what() << endl;
-  keep_window_open("~~");
   return 1;
 }
 catch (...)
 {
   cerr << "Oops, unknown exception" << endl;
-  keep_window_open("~~");
   return 2;
 }
