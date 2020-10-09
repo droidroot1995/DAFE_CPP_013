@@ -78,7 +78,7 @@ Token Token_stream::get ()
   switch (ch)
   {
   case quit:
-  case name:
+  case print:
   case '(':
   case ')':
   case '+':
@@ -86,7 +86,6 @@ Token Token_stream::get ()
   case '*':
   case '/':
   case '%':
-  case ';':
   case '=':
     return Token{ ch };
 
