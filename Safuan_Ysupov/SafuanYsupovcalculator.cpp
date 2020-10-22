@@ -51,7 +51,6 @@
 #include <iostream>
 using namespace std;
 
-double expression();
 
 
 const char number = '8'; // t.kind==number означает, что t - число
@@ -116,11 +115,14 @@ Token Token_stream::get() //Чтение из cin и составление Token
     case quit:    // for "quit"
     case '(':
     case ')':
+    case '{':
+    case '}':
     case '+':
     case '-':
     case '*':
     case '/':
     case '%':
+    case '=':
         return Token{ ch };      // let each character represent itself
     case '.':                    // Число с плавающей точкой может начинаться с точки
         // числовой литерал:
@@ -171,16 +173,22 @@ class Variable
 public:
     string name;
     double value;
+
+    Variable(string n, double v):
+        name{ n }, value{ v } {}
+    double get_value(string s);
+    void set_value(string s, double d);
 };
 
 vector<Variable> var_table;
+
 
 double get_value(string s)
 //Возвращает значение переменной с именем s
 {
     for (const Variable& v : var_table)
         if (v.name == s) return v.value;
-    error("get: неопределённая переменна", s);
+    error("get: undefined name ", s);
 }
 
 void set_value(string s, double d)
@@ -207,12 +215,13 @@ bool is_declared(string var)
 double define_name(string var, double val)
 // Добавляем пару (var,val) в вектор var_table
 {
-    if (is_declared(var)) error(var, " повторное об'Ъ1111ление11 ");
+    if (is_declared(var)) error(var, " повторное объявление11 ");
     var_table.push_back(Variable{ var, val });
     return val;
 }
 
-Token_stream ts;
+Token_stream ts;        // предоставляет get() и putback()
+double expression();    // объявление для использования в primary()
 
 /// deal with numbers and parentheses
 double primary()
@@ -228,8 +237,20 @@ double primary()
             error("')' expected");
         return d;
     }
+    case '{':
+    {
+        double d = expression();
+        t = ts.get();
+        if (t.kind != '}')
+        {
+            error("need '}' ");
+        }
+        return d;
+    }
     case number:          // we use '8' to represent a number
         return t.value;
+    case name:
+        return get_value(t.name);
     case '-':
         return -primary();
     case '+':
@@ -272,7 +293,7 @@ double term()
         }
         default:
             ts.putback(t);     // put t back into the token stream
-            return left;
+        return left;
         }
     }
 }
@@ -343,7 +364,7 @@ void clean_up_mess() // наивное решение
 void calculate() //Цикл для вычислений выражения
 {
     while (cin)
-        try
+    try
     {
         cout << prompt;
         Token t = ts.get();
@@ -363,16 +384,17 @@ void calculate() //Цикл для вычислений выражения
 int main()
 try
 {
+    setlocale(LC_ALL, "Russian");
     //Предопределённые имена
     define_name("pi", 3.1415926535);
-    define_name("е", 2.7182818284);
+    define_name("e", 2.7182818284);
 
     calculate();
 
     //keep_window_open(); // Удерживает консольное окно открытым
     return 0;
 }
-catch (exception& e)
+catch (runtime_error& e)   //exception
 {
     cerr << e.what() << '\n';
     keep_window_open("~~");
