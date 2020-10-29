@@ -8,7 +8,6 @@
 
 #include "std_lib_facilities.h"
 
-
 struct Token
 {
   char kind;
@@ -26,7 +25,6 @@ struct Token
      : kind{ch} , name{n}
   { }
 };
-
 
 class Token_stream
 {
@@ -105,7 +103,7 @@ Token Token_stream::get ()
       string s;
       s += ch;
       while (cin.get(ch) &&
-             (isalpha(ch) || isdigit(ch)))
+             (isalpha(ch) || isdigit(ch) || ch == '_'))
         s += ch;
       cin.putback(ch);
 
@@ -245,7 +243,7 @@ double term ()
     {
       int il = narrow_cast<int> (left) ;
       int i2 = narrow_cast<int> (primary());
-      if (i2 == 0) error ("% : divide by zero");
+      if (i2 == 0) error("% : divide by zero");
       left = il % i2;
       // t = ts.get();
       break;
