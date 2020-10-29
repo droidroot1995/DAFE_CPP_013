@@ -106,7 +106,7 @@ Token Token_stream::get ()
       s += ch;
       while (cin.get(ch) &&
              (isalpha(ch) || isdigit(ch)))
-        s = ch;
+        s += ch;
       cin.putback(ch);
 
       if (s == declkey) return Token{ let };
@@ -347,8 +347,8 @@ void calculate ()
 int main ()
 try
 {
-  define_name ("pi", 3.141592653589793);
-  define_name ("e",  2.718281828459045);
+  define_name("pi", 3.141592653589793);
+  define_name("e",  2.718281828459045);
 
   calculate();
 
