@@ -4,6 +4,7 @@
 #include "tokenStream.h"
 #include "variables.h"
 
+
 Token_stream ts; // we represent expressions as a stream of tokens
 
 double expression ();
@@ -119,12 +120,21 @@ double declaration ()
   return define_name (var, expression());
 }
 
+double sqrtFunc()
+{
+    double x = expression();
+    if (x < 0)
+        error("expression under sqrt() is below zero");
+    return sqrt(x);
+}
 
 double statement ()
 {
   Token t = ts.get();
   switch (t.kind)
   {
+  case sqrtKey:
+     return sqrtFunc();
   case let:
     return declaration();
   default:

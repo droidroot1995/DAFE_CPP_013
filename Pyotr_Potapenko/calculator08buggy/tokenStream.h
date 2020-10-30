@@ -33,10 +33,12 @@ constexpr char print = ';';
 constexpr char number = '8';
 constexpr char name = 'a';
 constexpr char let = 'L';
+constexpr char sqrtKey = 'S';
 
 const string prompt = "> ";
 const string result = "= ";
 const string declkey = "let";
+const string sqrtString = "sqrt";
 
 
 Token Token_stream::get ()
@@ -85,6 +87,7 @@ Token Token_stream::get ()
       cin.putback(ch);
 
       if (s == declkey) return Token{ let };
+      if (s == sqrtString) return Token{ sqrtKey};
 
       return Token{ name, s };
     }
