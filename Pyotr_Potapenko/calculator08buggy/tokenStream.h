@@ -41,6 +41,7 @@ const string result = "= ";
 const string declkey = "#";
 const string sqrtString = "sqrt";
 const string powString = "pow";
+const string quitString = "exit";
 
 Token Token_stream::get ()
 {
@@ -55,7 +56,6 @@ Token Token_stream::get ()
 
   switch (ch)
   {
-  case quit:
   case print:
   case '(':
   case ')':
@@ -88,6 +88,7 @@ Token Token_stream::get ()
         s += ch;
       cin.putback(ch);
 
+      if (s == quitString) return Token{ quit};
       if (s == declkey) return Token{ let };
       if (s == sqrtString) return Token{ sqrtKey};
       if (s == powString) return Token{ powKey};
