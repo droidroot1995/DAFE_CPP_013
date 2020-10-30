@@ -9,6 +9,8 @@ Token_stream ts; // we represent expressions as a stream of tokens
 
 double expression ();
 
+double statement();
+
 double primary ()
 {
   Token t = ts.get();
@@ -110,8 +112,9 @@ double declaration ()
     error("name expected in declaration");
 
   string var = t.name;
-  if (is_declared(var))
+  /* if (is_declared(var))
     error(var, " declared twice");
+  */
 
   t = ts.get();
   if (t.kind != '=')
@@ -126,7 +129,7 @@ double sqrtFunc()
     if (token.kind != '(')
         error("there must be '(' before first parameter in sqrt(x)");
 
-    double x = expression();
+    double x = statement();
 
     if (x < 0)
         error("expression under sqrt() is below zero");
