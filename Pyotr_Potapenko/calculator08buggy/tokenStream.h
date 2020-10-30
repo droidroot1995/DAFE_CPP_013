@@ -38,7 +38,7 @@ constexpr char powKey = 'P';
 
 const string prompt = "> ";
 const string result = "= ";
-const string declkey = "let";
+const string declkey = "#";
 const string sqrtString = "sqrt";
 const string powString = "pow";
 
@@ -93,6 +93,11 @@ Token Token_stream::get ()
       if (s == powString) return Token{ powKey};
 
       return Token{ name, s };
+    } else {
+        string s;
+        s += ch;
+        cout << s << endl;
+        if (s == declkey) return Token{ let };
     }
     error("Bad token");
   }
