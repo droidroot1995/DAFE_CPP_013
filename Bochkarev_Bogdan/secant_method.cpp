@@ -11,7 +11,7 @@ void secant(double a, double b, double epsy, double (*f)(double)) {
     unsigned steps = 0;
     double xn = a;
     double xk = b;
-    while (abs(a - b) > epsy) {
+    while (abs(a - b) > epsy && steps < 2000) {
         double fa = f(a);
         double fb = f(b);
         if (fb - fa == 0.){

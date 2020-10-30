@@ -149,7 +149,7 @@ double primary() {
     Token t = ts.get();
     switch (t.kind) {
         case '(': {
-            cout << "Got here\n";
+            // cout << "Got here\n";
             double d = expression();
             t = ts.get();
             if (t.kind != ')') {
@@ -174,7 +174,7 @@ double primary() {
             if (trunc(d) != d) {
                 throw runtime_error("ERROR: Factorial is undefined for non-integers;");
             }
-            return tgamma(d+1);
+            return int(tgamma(d+1));
         }
         case square_root:
             return sc_sqrt();
@@ -242,7 +242,7 @@ double term() { // Работает с операциями *, / и %
 //------------------------------------------------------------------------------
 // deal with + and -
 double expression() {
-    cout << "r";
+    // cout << "r";
     double left = term();
     Token t = ts.get();
     while(true) {

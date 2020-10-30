@@ -22,7 +22,7 @@ void bisection(double xn, double xk, double epsy, double (*f)(double)) {
         cout << f(xk);
     }
     else {
-        while (abs(xk - xn) > epsy) {
+        while (abs(xk - xn) > epsy && steps < 2000) {
             dx = (xk - xn) / 2;
             xi = xn + dx;
             if (f(xn) * f(xi) <= 0) {

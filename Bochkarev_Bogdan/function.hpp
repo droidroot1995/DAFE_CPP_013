@@ -13,5 +13,6 @@
 #include <cmath>
 #include <iostream>
 using namespace std;
+void set_function(string func);
 double f(double x);
 #endif /* function_hpp */

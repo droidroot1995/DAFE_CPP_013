@@ -12,8 +12,8 @@
 
 int main(int argc, const char * argv[]) {
     cout << "Press 1 to launch the calculator or 2 to solve the equation: ";
-    int z; cin >> z; cout << endl << endl;
-    switch (z) {
+    int choice; cin >> choice; cout << endl << endl;
+    switch (choice) {
         case 1: {
             calculator();
             break;
