@@ -9,7 +9,7 @@
 #include "Wrap.hpp"
 
 int start(SolverMethod &method, double &a, double &b, double &accuracy) {
-    cout << "Sorry, this version only solves equation f(x) = 0 where f(x) is defined in source code. That means, you can't solve equation, inputted from keyboard. We work on it, wait this feature in next versions.\nKeep in mind that this program only works correct if there's only one root (or zero) on the segment.\nf(x) = 5*x - pow(exp(1), x)\nNotice that some methods aren't able to give you the precision you want, which leads to rejecting it by correctness_checker(). Use other methods in that case.\n\n";
+    cout << "Sorry, this version only solves equation f(x) = 0 where f(x) is defined in source code. That means, you can't solve equation, inputted from keyboard. We work on it, trying to embed Python, wait this feature in next versions.\nKeep in mind that this program only works correct if there's only one root (or zero) on the segment.\nf(x) = 5*x - pow(exp(1), x)\nNotice that some methods aren't able to give you the precision you want, which leads to rejecting it by correctness_checker(). Use other methods in that case.\n\n";
     // Choosing solving method
     cout << "What method do you prefer to solve this equation?" << endl;
     cout << "Enter number of method:\n\

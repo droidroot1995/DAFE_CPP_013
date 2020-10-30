@@ -20,6 +20,7 @@
 //------------------------------------------------------------------------------
 
 double expression();    // declaration so that primary() can call expression()
+double primary();
 
 //------------------------------------------------------------------------------
 
@@ -27,7 +28,7 @@ double sc_sqrt() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_scr> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d < 0) throw runtime_error("ERROR: <sc_scr> Negative value is imaginary;");
     return sqrt(d);
 }
@@ -38,7 +39,7 @@ double sc_sin() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_sin> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d == 0 || d == 180) return 0;       // return true zero
     return sin(d*M_PI/180);
 }
@@ -49,7 +50,7 @@ double sc_cos() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_cos> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d == 90 || d == 270) return 0;      // return 0 instead of 8.766e-11
     return cos(d*M_PI/180);
 }
@@ -60,7 +61,7 @@ double sc_tan() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_tan> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d == 90 || d == 270) throw runtime_error("ERROR: <sc_tan> Undefined;");
     if (d == 0 || d == 180) return 0;
     return tan(d*M_PI/180);
@@ -72,7 +73,7 @@ double sc_cot() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_cot> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d == 0 || d == 180) throw runtime_error("ERROR: <sc_cot> Undefined;");
     if (d == 90 || d == 270) return 0;
     return 1/tan(d*M_PI/180);
@@ -84,7 +85,7 @@ double sc_ln() {
     char ch;
     if (cin.get(ch) && ch != '(') throw runtime_error("ERROR: <sc_log> Expected '(', got something else instead;");
     cin.putback(ch);
-    double d = expression();
+    double d = primary();
     if (d <= 0) throw runtime_error("ERROR: <sc_log> Undefined for negative arguments;");
     return log(d);
 }
