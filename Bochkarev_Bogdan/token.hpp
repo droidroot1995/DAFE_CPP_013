@@ -98,6 +98,7 @@ Token Token_stream::get() {
                 else if (s == cotkey || s == cotkeyru) return Token(c_cot);
                 else if (s == sqrtkey) return Token{square_root};
                 else if (s == lnkey || s == logkey) return Token(c_ln);
+                else if (s == exitkey) return Token(quit);
                 return Token(name, s);
             }
             throw runtime_error("ERROR: Wrong token;");
