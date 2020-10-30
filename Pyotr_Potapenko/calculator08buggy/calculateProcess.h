@@ -122,10 +122,43 @@ double declaration ()
 
 double sqrtFunc()
 {
+    Token token = ts.get();
+    if (token.kind != '(')
+        error("there must be '(' before first parameter in sqrt(x)");
+
     double x = expression();
+
     if (x < 0)
         error("expression under sqrt() is below zero");
+
+    token = ts.get();
+    if (token.kind != ')')
+        error("there must be ')' after second parameter in sqrt(x)");
+
     return sqrt(x);
+}
+
+double powFunc()
+{
+    Token token = ts.get();
+    if (token.kind != '(')
+        error("there must be '(' before first parameter in pow(x, y)");
+
+    double x = expression();
+
+    token = ts.get();
+    if (token.kind != ',')
+        error("there must be ',' between first and second parameter in pow(x, y)");
+
+    double y = expression();
+
+    token = ts.get();
+    if (token.kind != ')')
+        error("there must be ')' after second parameter in pow(x, y)");
+
+    narrow_cast<int>(y);
+
+    return pow(x, y);
 }
 
 double statement ()
@@ -135,6 +168,8 @@ double statement ()
   {
   case sqrtKey:
      return sqrtFunc();
+  case powKey:
+      return powFunc();
   case let:
     return declaration();
   default:

@@ -34,12 +34,13 @@ constexpr char number = '8';
 constexpr char name = 'a';
 constexpr char let = 'L';
 constexpr char sqrtKey = 'S';
+constexpr char powKey = 'P';
 
 const string prompt = "> ";
 const string result = "= ";
 const string declkey = "let";
 const string sqrtString = "sqrt";
-
+const string powString = "pow";
 
 Token Token_stream::get ()
 {
@@ -64,6 +65,7 @@ Token Token_stream::get ()
   case '/':
   case '%':
   case '=':
+  case ',':
     return Token{ ch };
 
   case '.':
@@ -88,6 +90,7 @@ Token Token_stream::get ()
 
       if (s == declkey) return Token{ let };
       if (s == sqrtString) return Token{ sqrtKey};
+      if (s == powString) return Token{ powKey};
 
       return Token{ name, s };
     }
