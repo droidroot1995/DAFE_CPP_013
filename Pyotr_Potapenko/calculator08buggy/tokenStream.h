@@ -44,8 +44,8 @@ const string result = "= ";
 const string declkey = "#";
 const string sqrtString = "sqrt";
 const string powString = "pow";
-const string quitString = "exit";
-const string helpString = "h";
+const string quitString = "quit";
+const string helpString = "help";
 
 Token Token_stream::get ()
 {
