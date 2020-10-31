@@ -4,6 +4,8 @@
 #include "std_lib_facilities.h"
 #include "token.h"
 
+void printHelp();
+
 class Token_stream
 {
   bool full{ false };
@@ -35,6 +37,7 @@ constexpr char name = 'a';
 constexpr char let = 'L';
 constexpr char sqrtKey = 'S';
 constexpr char powKey = 'P';
+constexpr char help = 'h';
 
 const string prompt = "> ";
 const string result = "= ";
@@ -42,6 +45,7 @@ const string declkey = "#";
 const string sqrtString = "sqrt";
 const string powString = "pow";
 const string quitString = "exit";
+const string helpString = "h";
 
 Token Token_stream::get ()
 {
@@ -92,6 +96,10 @@ Token Token_stream::get ()
       if (s == declkey) return Token{ let };
       if (s == sqrtString) return Token{ sqrtKey};
       if (s == powString) return Token{ powKey};
+      if (s == helpString) {
+          printHelp();
+          return Token{ help };
+      }
 
       return Token{ name, s };
     } else {

@@ -1,7 +1,7 @@
 #ifndef CALCULATEPROCESS_H
 #define CALCULATEPROCESS_H
 
-#include "tokenStream.h"
+#include "printHelp.h"
 #include "variables.h"
 
 
@@ -130,7 +130,7 @@ double declaration ()
   if (t.kind != '=')
     error("'=' missing in declaration of ", var);
 
-  return symbol_table.define_name(var, expression());
+  return symbol_table.define(var, expression());
 }
 
 double sqrtFunc()
@@ -179,7 +179,7 @@ double setValueFunc(Token& nameToken) {
     Token token = ts.get();
     if (token.kind != '=') {
         ts.putback(token);
-        return symbol_table.get_value(name);
+        return symbol_table.get(name);
     }
     double value = statement();
     symbol_table.set(name, value);
@@ -215,6 +215,7 @@ void calculate ()
     Token t = ts.get();
     while (t.kind == print)
       t = ts.get();
+    if (t.kind == help) continue;
     if (t.kind == quit) return;
 
     ts.putback(t);
