@@ -7,9 +7,14 @@ struct Variable
 {
   string name;
   double value;
+  bool isConstant;
 
   Variable (string n, double v)
-    : name{ n }, value{ v }
+    : name{ n }, value{ v }, isConstant{false}
+  { }
+
+  Variable (string n, double v, bool c)
+    : name{ n }, value{ v }, isConstant{c}
   { }
 };
 
@@ -30,6 +35,9 @@ void set_value (string s, double d)
   {
     if (var_table[i].name == s)
     {
+      if (var_table[i].isConstant) {
+          error(s + " is constant and can't be changed!");
+      }
       var_table[i].value = d;
       return;
     }
@@ -53,6 +61,18 @@ double define_name (string var, double val)
   }
 
   var_table.push_back (Variable{ var, val });
+
+  return val;
+}
+
+double define_name (string var, double val, bool isConstant)
+{
+  if (is_declared(var)) {
+      // set_value(var, val);
+      error(var, " declared twice");
+  }
+
+  var_table.push_back (Variable{ var, val, isConstant });
 
   return val;
 }

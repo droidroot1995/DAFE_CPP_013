@@ -6,8 +6,8 @@ int main ()
 {
     try
     {
-        define_name("pi", 3.141592653589793);
-        define_name("e",  2.718281828459045);
+        define_name("pi", 3.141592653589793 ,true);
+        define_name("e",  2.718281828459045, true);
         define_name("k", 1000);
 
         calculate();
