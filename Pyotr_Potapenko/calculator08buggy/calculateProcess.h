@@ -11,6 +11,10 @@ double expression ();
 
 double statement();
 
+double setValueFunc(Token& token);
+double sqrtFunc();
+double powFunc();
+
 double primary ()
 {
   Token t = ts.get();
@@ -34,7 +38,13 @@ double primary ()
     return t.value;
 
   case name:
-    return get_value(t.name);
+    return setValueFunc(t);
+
+  case sqrtKey:
+     return sqrtFunc();
+
+  case powKey:
+      return powFunc();
 
   default:
     error("primary expected");
@@ -112,9 +122,8 @@ double declaration ()
     error("name expected in declaration");
 
   string var = t.name;
-  /* if (is_declared(var))
+  if (is_declared(var))
     error(var, " declared twice");
-  */
 
   t = ts.get();
   if (t.kind != '=')
@@ -127,16 +136,16 @@ double sqrtFunc()
 {
     Token token = ts.get();
     if (token.kind != '(')
-        error("there must be '(' before first parameter in sqrt(x)");
+        error("there must be '(' before 'x' parameter in sqrt(x)");
 
-    double x = statement();
+    double x = expression();
 
     if (x < 0)
         error("expression under sqrt() is below zero");
 
     token = ts.get();
     if (token.kind != ')')
-        error("there must be ')' after second parameter in sqrt(x)");
+        error("there must be ')' after 'x' parameter in sqrt(x)");
 
     return sqrt(x);
 }
@@ -164,15 +173,23 @@ double powFunc()
     return pow(x, y);
 }
 
+double setValueFunc(Token& nameToken) {
+    string name = nameToken.name;
+    Token token = ts.get();
+    if (token.kind != '=') {
+        ts.putback(token);
+        return get_value(name);
+    }
+    double value = statement();
+    set_value(name, value);
+    return value;
+}
+
 double statement ()
 {
   Token t = ts.get();
   switch (t.kind)
   {
-  case sqrtKey:
-     return sqrtFunc();
-  case powKey:
-      return powFunc();
   case let:
     return declaration();
   default:

@@ -48,8 +48,8 @@ bool is_declared (string s)
 double define_name (string var, double val)
 {
   if (is_declared(var)) {
-      set_value(var, val);
-      // error(var, " declared twice");
+      // set_value(var, val);
+      error(var, " declared twice");
   }
 
   var_table.push_back (Variable{ var, val });
