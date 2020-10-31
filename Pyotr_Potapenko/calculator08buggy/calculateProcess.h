@@ -6,6 +6,7 @@
 
 
 Token_stream ts; // we represent expressions as a stream of tokens
+Symbol_table symbol_table;
 
 double expression ();
 
@@ -122,14 +123,14 @@ double declaration ()
     error("name expected in declaration");
 
   string var = t.name;
-  if (is_declared(var))
+  if (symbol_table.is_declared(var))
     error(var, " declared twice");
 
   t = ts.get();
   if (t.kind != '=')
     error("'=' missing in declaration of ", var);
 
-  return define_name (var, expression());
+  return symbol_table.define_name(var, expression());
 }
 
 double sqrtFunc()
@@ -178,10 +179,10 @@ double setValueFunc(Token& nameToken) {
     Token token = ts.get();
     if (token.kind != '=') {
         ts.putback(token);
-        return get_value(name);
+        return symbol_table.get_value(name);
     }
     double value = statement();
-    set_value(name, value);
+    symbol_table.set(name, value);
     return value;
 }
 

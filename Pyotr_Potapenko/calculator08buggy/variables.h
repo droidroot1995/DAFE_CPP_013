@@ -18,63 +18,66 @@ struct Variable
   { }
 };
 
-vector<Variable> var_table; // the place where we store our variables
-
-double get_value (string s)
+struct Symbol_table
 {
-  for (int i = 0; i < var_table.size(); ++i)
-    if (var_table[i].name == s)
-      return var_table[i].value;
+    vector<Variable> var_table; // the place where we store our variables
 
-  error("get: undefined name ", s);
-}
-
-void set_value (string s, double d)
-{
-  for (int i = 0; i < var_table.size(); ++i)
-  {
-    if (var_table[i].name == s)
+    double get(string s)
     {
-      if (var_table[i].isConstant) {
-          error(s + " is constant and can't be changed!");
-      }
-      var_table[i].value = d;
-      return;
+      for (int i = 0; i < var_table.size(); ++i)
+        if (var_table[i].name == s)
+          return var_table[i].value;
+
+      error("get: undefined name ", s);
     }
-  }
 
-  error("set: undefined name ", s);
-}
+    void set(string s, double d)
+    {
+      for (int i = 0; i < var_table.size(); ++i)
+      {
+        if (var_table[i].name == s)
+        {
+          if (var_table[i].isConstant) {
+              error(s + " is constant and can't be changed!");
+          }
+          var_table[i].value = d;
+          return;
+        }
+      }
 
-bool is_declared (string s)
-{
-  for (int i = 0; i < var_table.size(); ++i)
-    if (var_table[i].name == s) return true;
-  return false;
-}
+      error("set: undefined name ", s);
+    }
 
-double define_name (string var, double val)
-{
-  if (is_declared(var)) {
-      // set_value(var, val);
-      error(var, " declared twice");
-  }
+    bool is_declared(string s)
+    {
+      for (int i = 0; i < var_table.size(); ++i)
+        if (var_table[i].name == s) return true;
+      return false;
+    }
 
-  var_table.push_back (Variable{ var, val });
+    double define(string var, double val)
+    {
+      if (is_declared(var)) {
+          // set_value(var, val);
+          error(var, " declared twice");
+      }
 
-  return val;
-}
+      var_table.push_back (Variable{ var, val });
 
-double define_name (string var, double val, bool isConstant)
-{
-  if (is_declared(var)) {
-      // set_value(var, val);
-      error(var, " declared twice");
-  }
+      return val;
+    }
 
-  var_table.push_back (Variable{ var, val, isConstant });
+    double define(string var, double val, bool isConstant)
+    {
+      if (is_declared(var)) {
+          // set_value(var, val);
+          error(var, " declared twice");
+      }
 
-  return val;
-}
+      var_table.push_back (Variable{ var, val, isConstant });
+
+      return val;
+    }
+};
 
 #endif // VARIABLES_H
