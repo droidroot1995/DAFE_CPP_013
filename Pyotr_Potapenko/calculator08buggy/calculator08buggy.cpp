@@ -10,6 +10,7 @@ int main ()
         symbol_table.define("e",  2.718281828459045, true);
         symbol_table.define("k", 1000);
 
+        cout << "Use \"" + helpString + "\" if you need help.\n";
         calculate();
 
         keep_window_open();
