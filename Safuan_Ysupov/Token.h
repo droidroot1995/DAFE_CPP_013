@@ -1,4 +1,4 @@
-#ifndef TOKEN_H // для подключения класса
+#ifndef TOKEN_H // to connect a class
 #define TOKEN_H
 #include "std_lib_facilities.h"
 
@@ -8,11 +8,11 @@ public:
     char kind;
     double value;
     string name;
-    // Инициализирует kind символом ch
+    // Initializes kind with the CH character
     Token(char ch) : kind{ ch } {}
-    // Инициализирует kind и value
+    // Initializes kind and value
     Token(char ch, string n) : kind{ ch }, name{ n }  { }
-    // Инициализирует kind и name
+    // Initializes kind and name
     Token(char ch, double val) : kind{ ch }, value{ val }  { }
 };
 

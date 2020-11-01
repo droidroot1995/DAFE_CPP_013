@@ -3,7 +3,7 @@
 vector<Variable> var_table;
 
 double get_value(string s)
-//Возвращает значение переменной с именем s
+// Returns the value of a variable named s
 {
     for (const Variable& v : var_table)
         if (v.name == s) return v.value;
@@ -11,7 +11,7 @@ double get_value(string s)
 }
 
 void set_value(string s, double d)
-// Присваивает объекту s типа Variable значение d
+// Assigns the value d to an s object of type Variable
 {
     for (Variable& v : var_table)
         if (v.name == s)
@@ -19,11 +19,11 @@ void set_value(string s, double d)
             v.value = d;
             return;
         }
-    error("set: неопределённая переменная ", s);
+    error("set: undefined variable ", s);
 }
 
 bool is_declared(string var)
-//Есть ли переменная var в векторе var_table?
+// Is there a var variable in the var_table vector?
 {
     for (const Variable v : var_table)
         if (v.name == var)
@@ -32,9 +32,10 @@ bool is_declared(string var)
 }
 
 double define_name(string var, double val)
-// Добавляем пару (var,val) в вектор var_table
+// Adding a pair (var, val) to the var_table vector
 {
-    if (is_declared(var)) error(var, " повторное объявление11 ");
+    if (is_declared(var))
+        error(var, " repeat ad ");
     var_table.push_back(Variable{ var, val });
     return val;
 }
