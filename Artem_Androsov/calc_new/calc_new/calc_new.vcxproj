@@ -140,12 +140,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="calc_new.cpp" />
+    <ClCompile Include="funcs.cpp" />
     <ClCompile Include="Grammar.cpp" />
+    <ClCompile Include="Grammar2.cpp" />
     <ClCompile Include="Token.cpp" />
+    <ClCompile Include="Variable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="consts.h" />
+    <ClInclude Include="funcs.h" />
     <ClInclude Include="Grammar.h" />
+    <ClInclude Include="Grammar2.h" />
     <ClInclude Include="Token.h" />
+    <ClInclude Include="Variable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,4 @@
-#include "Grammar.h"
-extern Token_stream ts;
+#include "Variable.h"
 
 double expression()
 {
@@ -47,6 +46,18 @@ double term()
 			t = ts.get();
 			break;
 		}
+		case '%':
+		{
+			int i1 = narrow_cast<int>(left);
+			int i2 = narrow_cast<int>(primary());
+			if (i2 == 0)
+			{
+				error("%: deviding by zero");
+			}
+			left = i1 % i2;
+			t = ts.get();
+			break;
+		}
 		default:
 			ts.putback(t);
 			return left;
@@ -69,8 +80,23 @@ double primary()
 		}
 		return d;
 	}
-	case '8':
+	case '@':
+	{
+		double d = primary();
+		if (d < 0)
+		{
+			error("sqrt: a negative number");
+		}
+		return sqrt(d);
+	}
+	case number:
 		return t.value;
+	case name:
+		return get_value(t.name);
+	case '-':
+		return -primary();
+	case '+':
+		return primary();
 	default:
 		error("expression is needed");
 	}

@@ -1,0 +1,41 @@
+> = 4
+> = -4
+> = 48
+> = 24
+> = 3.33333
+> Deviding by zero
+> = 0
+> = 20
+> info loss
+> info loss
+> info loss
+> %: deviding by zero
+> = 8
+> = -45
+> = -225
+> variable name is missing
+> expression is needed
+> variable name is missing
+> expression is needed
+> = 6.28319
+> variable name is missing
+> variable name is missing
+> variable name is missing
+> expression is needed
+> = 57.1069
+> = 7.72858
+> = 1.00157
+> sqrt: a negative number
+> = 2
+> expression is needed
+> = 38.344
+> = 2
+> expression is needed
+> = 7
+> = 8
+> = 6.28319
+> expression is needed
+> %: deviding by zero
+> = 0
+> expression is needed
+> Please enter a character to exit

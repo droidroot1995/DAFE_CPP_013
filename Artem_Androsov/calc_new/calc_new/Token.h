@@ -1,21 +1,27 @@
 #pragma once
-#include <iostream>
-#include "std_lib_facilities.h"
+#include <iostream>												// Подключение стандартной библиотеки, 
+#include "std_lib_facilities.h"									// библиотеки из учебника Страуструпа
+#include "consts.h"												// и объявленных констант.
 using namespace std;
 
-class Token
-{
+class Token														// Класс Token - объекты этого класса будут представлять лексеммы,
+{																// на которые мы будем разбивать вводимые выражения.
 public:
-	char kind;
-	double value;
+	char kind;													// Оболзначение типа лексеммы (число, знак).
+	double value;												// Хранение значения (для лексемм-чисел).
+	string name;												// Имя лексеммы (для ключевых слов).
+	Token(char ch) :kind{ ch } { };								// Конструкторы класса для создания различных лексемм.
+	Token(char ch, double val) :kind{ ch }, value{ val } { };
+	Token(char ch, string n) :kind{ ch }, name{ n } { };
 };
 
-class Token_stream
-{
-public:
-	Token get();
-	void putback(Token t);
+class Token_stream												// Класс Token_stream - объект этого класса бужет служить в качестве
+{																// потока ввода лексемм, который будет преобразовывать входную строку и предоставлять
+public:															// лексеммы.
+	Token get();												// Функция для получения следующей лексеммы из потока.
+	void putback(Token t);										// Функция для возврата лексеммы обратно в поток.
+	void ignore(char c);										// Функция для пропуска лексемм в случае ошибок.
 private:
-	bool full{ false };
-	Token buffer;
+	bool full{ false };											// Сигнал того, полон ли буфер.
+	Token buffer{'\0'};											// Буфер потока, используемый функцией putback(...).
 };

@@ -1,41 +1,78 @@
-#include "Token.h"
+#include "Token.h"																// Подключение класса токен для работы с ним. 
 
-void Token_stream::putback(Token t)
+void Token_stream::putback(Token t)												// Описание функции, возвращающей токен обратно в поток.
 {
-	if (full)
-	{
-		error("putback(): buffer is full");
-	}
-	buffer = t;
-	full = true;
+	if (full)																	// Если буфер полон -
+	{																			//
+		error("putback(): buffer is full");										// вызов ошибки.
+	}																			//
+	buffer = t;																	// Запись в буфер,
+	full = true;																// обозначение буфера заполненным.
 }
 
-Token Token_stream::get()
+void Token_stream::ignore(char c)												// Описание функции, пропускающей токены до определённого символа.
 {
-	if (full)
-	{
-		full = false;
-		return buffer;
+	if (full && c == buffer.kind)												// Если токен является конечным символом -
+	{																			//
+		full = false;															// очистка буфера,
+		return;																	// окончание функции.
 	}
-	char ch;
-	cin >> ch;
-	switch (ch)
-	{
-	case ';':
-	case 'q':
-	case '(': case ')': case '+':
-	case '-': case '*': case '/':
-		return Token{ ch };
-	case '.':
-	case '0': case '1': case '2': case '3': case '4':
-	case '5': case '6': case '7': case '8': case '9':
-	{
-		cin.putback(ch);
-		double val;
-		cin >> val;
-		return Token{ '8',val };
+	full = false;																// Очистка буфера.
+	char ch = 0;
+	while (cin >> ch)															// Считывать символы
+	{																			//  
+		if (ch == c)															// пока не будет достигнут конечный символ.
+		{
+			return;
+		}
 	}
-	default:
-		error("wrong token");
+}
+
+Token Token_stream::get()														// Описание функции, берущей следующую лексемму из потока.
+{
+	if (full)																	// Если буфер полон -
+	{																			//
+		full = false;															// 
+		return buffer;															// возвращаем токен из буфера.
+	}
+	char ch;																	// Начало считывания символов 
+	cin >> ch;																	// из потока cin.
+
+	switch (ch)																	// Выбор поведения в зависимости от встреченнрого далее символаЖ
+	{
+	case ';':																	// В этих случаях
+	case '(': case ')':															// в качестве токена возвращается
+	case '+': case '-':															// объект с типом, являющимся
+	case '*': case '/':															// самим символом.
+	case '%': case '=':															//
+	case '@':																	//
+		return Token{ ch };														// Возврат самого токена.
+	case '#':
+		return Token{ let };													// Возврат токена, обозначающего зарезервированное слово для объявления переменной.
+	case '&':
+		return Token{ set };													// Возврат токена, обозначающего зарезервированное слово для изменения значения переменной.
+
+	case '.':																	// В случае встречи точки или цифры -
+	case '0': case '1': case '2': case '3': case '4':							// возвращаем токен, обозначающий число.
+	case '5': case '6': case '7': case '8': case '9':							//
+	{																			//
+		cin.putback(ch);														// Возврат цифры для считывания полного числа.
+		double val;																//
+		cin >> val;																// Считывание значения.
+		return Token{ number,val };												// Возврат токена-числа.
+	}
+	default:																	// Во всех остальных случаях будет считывать слово, 
+		if (isalpha(ch))														// чтобы узнать не является ли оно каким либо 
+		{																		// зарезервированным словом.
+			string s;															//
+			s += ch;															//
+			while (cin.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_'))	// Считывание слова.
+			{																	//
+				s += ch;														//
+			}																	//
+			cin.putback(ch);													//
+			return Token{ name,s };												// Возврат токена, представляющего слово.
+		}																		//
+		error("wrong token");													// В случае обранужения неверных символов - возникновение ошибки.
 	}
 }
