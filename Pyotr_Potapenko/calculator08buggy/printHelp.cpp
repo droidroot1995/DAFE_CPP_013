@@ -1,4 +1,5 @@
 #include "printHelp.h"
+#include "keys.h"
 
 void printHelp() {
     cout << "\n----HELP----"

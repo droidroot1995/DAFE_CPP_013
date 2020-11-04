@@ -1,4 +1,3 @@
-#include "std_lib_facilities.h"
 #include "calculate.h"
 
 extern Symbol_table symbol_table;
