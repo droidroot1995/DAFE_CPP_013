@@ -5,7 +5,7 @@ void printHelp() {
             "\n* Calculator Programm *"
             "\n"
             "\n* operations supported: + - % * /"
-            "\n* functions supported: sqrt(x), pow(x, y)"
+            "\n* functions supported: sqrt(x), pow(x, y), log(x, y)"
             "\n* after your statement you should leave \';\' symbol"
             "\n* if you want to quit type \"" + quitString + "\""
             "\n* you can create your own variables using # command"
