@@ -1,8 +1,8 @@
-#include <vector>
-#include "Token.h"
+#include <vector>			//
+#include "Token.h"			// ѕодключение файла дл€ работы с токенами.
 
-extern Token_stream ts;
+extern Token_stream ts;		// ќбъ€вление объекта класса Token_stream дл€ работы грамматики.
 
-double expression();
-double term();
-double primary();
+double expression();		// ‘ункци€, вычисл€юща€ выражение, обрабатывает сложение вычитание.
+double term();				// ‘ункци€, вычисл€юща€ терм. ќбрабатывает умножение, деление и остаток от делени€.
+double primary();			// ‘ункци€, вычисл€юща€ первичное выражение. ќбрабатывает знак перед числом, скобки, корень, факториал.

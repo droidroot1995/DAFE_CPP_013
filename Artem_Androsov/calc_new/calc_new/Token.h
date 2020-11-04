@@ -4,16 +4,20 @@
 #include "consts.h"												// и объявленных констант.
 using namespace std;
 
+
 class Token														// Класс Token - объекты этого класса будут представлять лексеммы,
 {																// на которые мы будем разбивать вводимые выражения.
 public:
 	char kind;													// Оболзначение типа лексеммы (число, знак).
 	double value;												// Хранение значения (для лексемм-чисел).
 	string name;												// Имя лексеммы (для ключевых слов).
+
 	Token(char ch) :kind{ ch } { };								// Конструкторы класса для создания различных лексемм.
-	Token(char ch, double val) :kind{ ch }, value{ val } { };
-	Token(char ch, string n) :kind{ ch }, name{ n } { };
+	Token(char ch, double val) :kind{ ch }, value{ val } { };	//
+	Token(char ch, string n) :kind{ ch }, name{ n } { };		//
 };
+
+
 
 class Token_stream												// Класс Token_stream - объект этого класса бужет служить в качестве
 {																// потока ввода лексемм, который будет преобразовывать входную строку и предоставлять

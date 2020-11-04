@@ -1,83 +1,128 @@
-#include "Grammar2.h"
+#include "Grammar2.h"											// Подключение файла для работы со всеми объявленными 
 
-double statement()
-{
-	Token t = ts.get();
-	switch (t.kind)
-	{
-	case let:
-		return declaration();
-	case set:
-		return sett();
-	default:
-		ts.putback(t);
-		return expression();
-	}
-}
 
-bool is_declared(string var)
-{
-	for (const Variable& v : var_table)
-	{
-		if (v.name == var)
-		{
-			return true;
-		}
-	}
-	return false;
-}
+void clean_up_mess()											// Функция для восстановление каалькулятора (пропуска ошибочных выражений).
+{																//
+	ts.ignore(print);											//
+}																//
+			
 
-double define_name(string var, double val, bool c)
-{
-	if (is_declared(var))
-	{
-		error(var, " second defining");
-	}
-	var_table.push_back(Variable{ var, val, c });
-	return val;
-}
 
-double declaration()
-{
-	Token t = ts.get();
-	if (t.kind != name)
-	{
-		error("variable name is missing");
-	}
-	string var_name = t.name;
+void calculate()												// Функция, являющаяся основным циклом калькулятора.
+{																//
+	while (cin)													// Счёт ковых данных происходит, пока не возникнет ошибки в cin.
+	{															//
+		try														//
+		{														//
+			cout << prompt;										// Вывод приглашения пользователю.
+			Token t = ts.get();									// Считывание следующего гокена из потока для определения дольнейших действий:
+			while (t.kind == print)								// 
+			{													// Если токен является символом ';' -
+				t = ts.get();									// считываем следующий токен.
+			}													//
+			if (t.name == quitkey)								//
+			{													// Если токен является зарезервированным словом выхода из прокраммы -
+				return;											// выходим из цикла.
+			}													//
+			ts.putback(t);										// Во всех остальных случаях возвращаем токен в поток
+			cout << result << statement() << '\n';				// и вызываем функцию, обрабатывающую поток токенов.
+		}														//
+		catch (exception& e)									// 
+		{														// Если во времия цикла возникают ошибки -
+			cerr << e.what() << '\n';							// выводим информацию об ошибке
+			clean_up_mess();									// и восстанавливаем калькулятор в изначальное состояние.
+		}														//
+	}															//
+}																//
 
-	Token t2 = ts.get();
-	if (t2.kind != '=')
-	{
-		error("'=' is missing in declaration of ", var_name);
-	}
 
-	double d = expression();
-	define_name(var_name, d, false);
-	return d;
-}
 
-double sett()
-{
-	Token t = ts.get();
-	if (t.kind != name)
-	{
-		error("variable name is missing");
-	}
-	string var_name = t.name;
+double statement()												// Функция, обрабатывающая поток токенов в зависимости от того, что ввёл пользователь -
+{																// определение переменной, изменение значениея переменной или вычисление выражения.
+	Token t = ts.get();											// Проперяем первый токен потока.
+	switch (t.kind)												//
+	{															//
+	case let:													// Если это знак определения переменной -
+		return declaration();									// вызываем функцию для определения переменной.
+	case set:													// Если это знак изменения значения -
+		return sett();											// вызываем функцию изменения значения переменной.
+	default:													// В иных случаях -
+		ts.putback(t);											// возвращаем токен в поток
+		return expression();									// и вызываем функцию для вычисления значения.
+	}															//
+}																//
 
-	if (!is_declared(var_name))
-	{
-		error("variable does not exist");
-	}
 
-	Token t2 = ts.get();
-	if (t2.kind != '=')
-	{
-		error("'=' is missing in setting ", var_name);
-	}
 
-	double d = expression();
-	set_value(var_name, d);
-	return d;
-}
+bool is_declared(string var)									// Функция, проверяющая, определена ли переменная.
+{																//
+	for (const Variable& v : var_table)							// Для каждой переменной в var_table проверяем:
+	{															//
+		if (v.name == var)										// Если есть переменная с таким именем -
+		{														//
+			return true;										// возвращаем true.
+		}														//
+	}															//
+	return false;												// Иначе возвращаем false.
+}																//
+
+
+
+double define_name(string var, double val, bool c)				// Функция для создания новой переменной.
+{																//
+	if (is_declared(var))										// 
+	{															// Если же такая переменная уже существует -
+		error(var, " second defining");							// вызываем ошибку.
+	}															//
+	var_table.push_back(Variable{ var, val, c });				// Иначе добавляем в вектор переменных новую переменную.
+	return val;													// Возвращаем значение созданной переменной.
+}																//
+
+
+
+double declaration()											// Функция для определения новой переменной (проверки правильности синтаксиса).
+{																//
+	Token t = ts.get();											// Проверяем первый токен.
+	if (t.kind != name)											// 
+	{															// Если он не является именем,
+		error("variable name is missing");						// то возвращаем ошибку.
+	}															//
+	string var_name = t.name;									// Иначе запоминаем имя переменной.
+																//
+	Token t2 = ts.get();										// Проверяем второй токеню
+	if (t2.kind != '=')											//
+	{															// Если он не является символом '=',
+		error("'=' is missing in declaration of ", var_name);	// то вызываем ошибку.
+	}															//
+																//
+	double d = expression();									// 
+	define_name(var_name, d, false);							// 
+	return d;													// 
+}																//
+
+
+
+double sett()													// Функция для изменения значения существующей переменной (проверки правильности синтаксиса).
+{																//
+	Token t = ts.get();											// Проверяем первый токен.
+	if (t.kind != name)											//
+	{															// Если он не является именем,
+		error("variable name is missing");						// то возвращаем ошибку.
+	}															//
+	string var_name = t.name;									// Иначе запоминаем имя переменной.
+																//
+	if (!is_declared(var_name))									// 
+	{															// Если переменная ещё не была определена,
+		error("variable does not exist");						// то возвращаем ошибку.
+	}															// 
+																//
+	Token t2 = ts.get();										// Проверяем второй токеню
+	if (t2.kind != '=')											// 
+	{															// Если он не является символом '=',
+		error("'=' is missing in setting ", var_name);			// то вызываем ошибку.
+	}															//
+																//
+	double d = expression();									// Иначе вычисляем значение выражение после знака '='.
+	set_value(var_name, d);										// Изменяем значение переменной.
+	return d;													// Возвращаем новое значение новой переменной.
+}																//
