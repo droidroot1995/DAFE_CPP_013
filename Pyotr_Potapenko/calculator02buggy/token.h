@@ -30,8 +30,4 @@ private:
   Token buffer;        /// here we keep a Token put back using putback()
 };
 
-
-
-
-
 #endif // TOKEN_H
