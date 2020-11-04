@@ -31,6 +31,9 @@ double primary ()
   case powKey:
       return powFunc();
 
+  case logKey:
+      return logFunc();
+
   default:
     error("primary expected");
   }
@@ -133,6 +136,31 @@ double sqrtFunc()
         error("there must be ')' after 'x' parameter in sqrt(x)");
 
     return sqrt(x);
+}
+
+double logFunc()
+{
+    Token token = ts.get();
+    if (token.kind != '(')
+        error("there must be '(' before first parameter in log(x, y)");
+
+    double x = expression();
+
+    token = ts.get();
+    if (token.kind != ',')
+        error("there must be ',' between first and second parameter in log(x, y)");
+
+    double y = expression();
+
+    token = ts.get();
+    if (token.kind != ')')
+        error("there must be ')' after second parameter in log(x, y)");
+
+    if (y <= 0) error("'y' parameter in log(x, y) must be > 0");
+    if (x == 1) error("'x' parameter in log(x, y) shouldn't be equal to 1");
+    if (x <= 0) error("'x' parameter in log(x, y) must be > 0");
+
+    return log(y)/log(x);
 }
 
 double powFunc()

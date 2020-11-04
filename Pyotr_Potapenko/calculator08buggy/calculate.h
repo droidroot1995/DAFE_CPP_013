@@ -11,6 +11,7 @@ extern Symbol_table symbol_table;
 double setValueFunc(Token& token);
 double sqrtFunc();
 double powFunc();
+double logFunc();
 
 double expression ();
 double statement();

@@ -59,6 +59,7 @@ Token Token_stream::get ()
       if (s == declkey) return Token{ let };
       if (s == sqrtString) return Token{ sqrtKey};
       if (s == powString) return Token{ powKey};
+      if (s == logString) return Token { logKey };
       if (s == helpString) {
           printHelp();
           return Token{ help };
