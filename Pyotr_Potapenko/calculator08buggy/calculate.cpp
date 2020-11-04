@@ -1,20 +1,4 @@
-#ifndef CALCULATEPROCESS_H
-#define CALCULATEPROCESS_H
-
-#include "printHelp.h"
-#include "variables.h"
-
-
-Token_stream ts; // we represent expressions as a stream of tokens
-Symbol_table symbol_table;
-
-double expression ();
-
-double statement();
-
-double setValueFunc(Token& token);
-double sqrtFunc();
-double powFunc();
+#include "calculate.h"
 
 double primary ()
 {
@@ -227,6 +211,3 @@ void calculate ()
     clean_up_mess();
   }
 }
-
-
-#endif // CALCULATEPROCESS_H

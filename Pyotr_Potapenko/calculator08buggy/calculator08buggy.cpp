@@ -1,6 +1,10 @@
 #include "std_lib_facilities.h"
+#include "variables.h"
+#include "tokenStream.h"
+#include "calculate.h"
 
-#include "calculateProcess.h"
+extern Symbol_table symbol_table;
+extern Token_stream ts;
 
 int main ()
 {
