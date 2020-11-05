@@ -8,104 +8,106 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/barly/CLionProjects/calcute/cmake-build-debug"/>
+				<Option working_dir="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/barly/CLionProjects/calcute/cmake-build-debug"/>
+				<Option working_dir="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/barly/CLionProjects/calcute/cmake-build-debug"/>
+				<Option working_dir="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="calcute">
-				<Option output="/Users/barly/CLionProjects/calcute/cmake-build-debug/calcute" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/barly/CLionProjects/calcute/cmake-build-debug"/>
+				<Option output="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/calcute" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 calcute"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 calcute"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="calcute/fast">
-				<Option output="/Users/barly/CLionProjects/calcute/cmake-build-debug/calcute" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/barly/CLionProjects/calcute/cmake-build-debug"/>
+				<Option output="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/calcute" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 calcute/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/CLionProjects/calcute/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 calcute/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/barly/CLionProjects/calcute/FUNCTION.cpp">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/FUNCTION.h">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.h">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/TOKEN.h">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN.h">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.cpp">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/TOKEN_STREAM.h">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.h">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/Variable.cpp">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.cpp">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/Variable.h">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.h">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/main.cpp">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/main.cpp">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/std_lib_facilities.h">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/std_lib_facilities.h">
 			<Option target="calcute"/>
 		</Unit>
-		<Unit filename="/Users/barly/CLionProjects/calcute/CMakeLists.txt">
+		<Unit filename="/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

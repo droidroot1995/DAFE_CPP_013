@@ -6,43 +6,65 @@
 
 #IncludeRegexTransform: 
 
-/Users/barly/CLionProjects/calcute/FUNCTION.cpp
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp
 FUNCTION.h
-/Users/barly/CLionProjects/calcute/FUNCTION.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.h
 
-/Users/barly/CLionProjects/calcute/FUNCTION.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.h
 Variable.h
-/Users/barly/CLionProjects/calcute/Variable.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.h
 TOKEN_STREAM.h
-/Users/barly/CLionProjects/calcute/TOKEN_STREAM.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.h
 
-/Users/barly/CLionProjects/calcute/TOKEN.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN.h
 iostream
 -
 cmath
 -
 std_lib_facilities.h
-/Users/barly/CLionProjects/calcute/std_lib_facilities.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/std_lib_facilities.h
 
-/Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp
-TOKEN_STREAM.h
-/Users/barly/CLionProjects/calcute/TOKEN_STREAM.h
-
-/Users/barly/CLionProjects/calcute/TOKEN_STREAM.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.h
 TOKEN.h
-/Users/barly/CLionProjects/calcute/TOKEN.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN.h
 
-/Users/barly/CLionProjects/calcute/Variable.cpp
-Variable.h
-/Users/barly/CLionProjects/calcute/Variable.h
-
-/Users/barly/CLionProjects/calcute/Variable.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.h
 TOKEN.h
-/Users/barly/CLionProjects/calcute/TOKEN.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN.h
 
-/Users/barly/CLionProjects/calcute/main.cpp
-FUNCTION.h
-/Users/barly/CLionProjects/calcute/FUNCTION.h
-
-/Users/barly/CLionProjects/calcute/std_lib_facilities.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/std_lib_facilities.h
+iostream
+-
+iomanip
+-
+fstream
+-
+sstream
+-
+cmath
+-
+cassert
+-
+cstdlib
+-
+string
+-
+list
+-
+forward_list
+-
+vector
+-
+unordered_map
+-
+algorithm
+-
+array
+-
+regex
+-
+random
+-
+stdexcept
+-
 

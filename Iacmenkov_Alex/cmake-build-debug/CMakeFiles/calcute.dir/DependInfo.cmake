@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/barly/CLionProjects/calcute/FUNCTION.cpp" "/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles/calcute.dir/FUNCTION.cpp.o"
-  "/Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp" "/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o"
-  "/Users/barly/CLionProjects/calcute/Variable.cpp" "/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles/calcute.dir/Variable.cpp.o"
-  "/Users/barly/CLionProjects/calcute/main.cpp" "/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles/calcute.dir/main.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles/calcute.dir/FUNCTION.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles/calcute.dir/Variable.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/main.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles/calcute.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

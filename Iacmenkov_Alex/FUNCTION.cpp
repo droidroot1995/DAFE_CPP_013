@@ -35,48 +35,79 @@ double primary ()
             return t.value;
         case sqt_rt:
         {
-            double d = primary();
-            if( d < 0)
-                error("ERROR: Negative value!");
-            return sqrt(d);
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in sqrt(x)");
+            double x = expression();
+            if (x < 0)
+                error("ERROR: expression sqrt() is below zero");
+            token = ts.get();
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in sqrt(x)");
+            return sqrt(x);
         }
         case ci_sin:
         {
-            double angl = primary();
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in sin(x)");
+            double angl = expression();
             if (angl == 0 || angl == 180)
                 return 0; // return true zero
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in sin(x)");
             return sin(angl*M_PI/180);
         }
         case ci_cos:
         {
-            double angl = primary();
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in cos(x)");
+            double angl = expression();
             if (angl == 90 || angl == 270)
                 return 0; // return 0 instead of 8.766e-11
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in cos(x)");
             return cos(angl*M_PI/180);
         }
         case ci_tan:
         {
-            double angl = primary();
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in tg(x)");
+            double angl = expression();
             if (angl == 90 || angl == 270)
-                error("ERROR: tan Undefined;");
+                error("ERROR: tg Undefined;");
             if (angl == 0 || angl == 180)
                 return 0;
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in tg(x)");
             return tan(angl*M_PI/180);
         }
         case ci_cot:
         {
-            double angl = primary();
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in ctg(x)");
+            double angl = expression();
             if (angl == 0 || angl == 180)
                 error("ERROR: cot Undefined;");
             if (angl == 90 || angl == 270)
                 return 0;
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in ctg(x)");
             return 1/tan(angl*M_PI/180);
         }
         case ci_ln:
         {
-            double d = primary();
+            Token token = ts.get();
+            if (token.kind != '(')
+                error("ERROR: must be '(' before 'x' in ln(x)");
+            double d = expression();
             if (d <= 0)
                 error("ERROR: ln Undefined for negative arguments;");
+            if (token.kind != ')')
+                error("ERROR: there must be ')' after 'x' in ln(x)");
             return log(d);
         }
         case name:
@@ -84,7 +115,7 @@ double primary ()
             Token following = ts.get();
             if (following.kind == '=')
             {
-                double d = expression();
+                double d = primary();
                 syta.set_value(t.name, d);
                 return d;
             }

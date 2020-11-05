@@ -63,10 +63,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/barly/CLionProjects/calcute
+CMAKE_SOURCE_DIR = /Users/barly/DAFE_CPP_013/Iacmenkov_Alex
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/barly/CLionProjects/calcute/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/calcute.dir/depend.make
@@ -79,55 +79,55 @@ include CMakeFiles/calcute.dir/flags.make
 
 CMakeFiles/calcute.dir/main.cpp.o: CMakeFiles/calcute.dir/flags.make
 CMakeFiles/calcute.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/calcute.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/main.cpp.o -c /Users/barly/CLionProjects/calcute/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/calcute.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/main.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/main.cpp
 
 CMakeFiles/calcute.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calcute.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/calcute/main.cpp > CMakeFiles/calcute.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/main.cpp > CMakeFiles/calcute.dir/main.cpp.i
 
 CMakeFiles/calcute.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calcute.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/calcute/main.cpp -o CMakeFiles/calcute.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/main.cpp -o CMakeFiles/calcute.dir/main.cpp.s
 
 CMakeFiles/calcute.dir/FUNCTION.cpp.o: CMakeFiles/calcute.dir/flags.make
 CMakeFiles/calcute.dir/FUNCTION.cpp.o: ../FUNCTION.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/calcute.dir/FUNCTION.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/FUNCTION.cpp.o -c /Users/barly/CLionProjects/calcute/FUNCTION.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/calcute.dir/FUNCTION.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/FUNCTION.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp
 
 CMakeFiles/calcute.dir/FUNCTION.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calcute.dir/FUNCTION.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/calcute/FUNCTION.cpp > CMakeFiles/calcute.dir/FUNCTION.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp > CMakeFiles/calcute.dir/FUNCTION.cpp.i
 
 CMakeFiles/calcute.dir/FUNCTION.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calcute.dir/FUNCTION.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/calcute/FUNCTION.cpp -o CMakeFiles/calcute.dir/FUNCTION.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/FUNCTION.cpp -o CMakeFiles/calcute.dir/FUNCTION.cpp.s
 
 CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o: CMakeFiles/calcute.dir/flags.make
 CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o: ../TOKEN_STREAM.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o -c /Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.cpp
 
 CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp > CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.cpp > CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.i
 
 CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/calcute/TOKEN_STREAM.cpp -o CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/TOKEN_STREAM.cpp -o CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.s
 
 CMakeFiles/calcute.dir/Variable.cpp.o: CMakeFiles/calcute.dir/flags.make
 CMakeFiles/calcute.dir/Variable.cpp.o: ../Variable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/calcute.dir/Variable.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/Variable.cpp.o -c /Users/barly/CLionProjects/calcute/Variable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/calcute.dir/Variable.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calcute.dir/Variable.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.cpp
 
 CMakeFiles/calcute.dir/Variable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calcute.dir/Variable.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/calcute/Variable.cpp > CMakeFiles/calcute.dir/Variable.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.cpp > CMakeFiles/calcute.dir/Variable.cpp.i
 
 CMakeFiles/calcute.dir/Variable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calcute.dir/Variable.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/calcute/Variable.cpp -o CMakeFiles/calcute.dir/Variable.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/Variable.cpp -o CMakeFiles/calcute.dir/Variable.cpp.s
 
 # Object files for target calcute
 calcute_OBJECTS = \
@@ -145,7 +145,7 @@ calcute: CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o
 calcute: CMakeFiles/calcute.dir/Variable.cpp.o
 calcute: CMakeFiles/calcute.dir/build.make
 calcute: CMakeFiles/calcute.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable calcute"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable calcute"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/calcute.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -158,6 +158,6 @@ CMakeFiles/calcute.dir/clean:
 .PHONY : CMakeFiles/calcute.dir/clean
 
 CMakeFiles/calcute.dir/depend:
-	cd /Users/barly/CLionProjects/calcute/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/barly/CLionProjects/calcute /Users/barly/CLionProjects/calcute /Users/barly/CLionProjects/calcute/cmake-build-debug /Users/barly/CLionProjects/calcute/cmake-build-debug /Users/barly/CLionProjects/calcute/cmake-build-debug/CMakeFiles/calcute.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/barly/DAFE_CPP_013/Iacmenkov_Alex /Users/barly/DAFE_CPP_013/Iacmenkov_Alex /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/cmake-build-debug/CMakeFiles/calcute.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/calcute.dir/depend
 
