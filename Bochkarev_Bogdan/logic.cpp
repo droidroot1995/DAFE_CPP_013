@@ -8,8 +8,8 @@
 
 #include "logic.hpp"
 #include "scientific_options.hpp"
-#include "token.сpp"
-#include "grammar.сpp"
+#include "token.hpp"
+#include "grammar.hpp"
 
 // logic
 //------------------------------------------------------------------------------

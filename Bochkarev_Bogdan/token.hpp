@@ -1,13 +1,13 @@
 //
-//  token.сpp
+//  token.hpp
 //  Calculator 1.2
 //
 //  Created by Bogdan Bochkarev on 9/30/20.
 //  Copyright © 2020 Bogdan Bochkarev. All rights reserved.
 //
 
-#ifndef token_cpp
-#define token_cpp
+#ifndef token_hpp
+#define token_hpp
 
 #include <stdio.h>
 #include <iostream>
