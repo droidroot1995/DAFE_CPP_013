@@ -1,51 +1,51 @@
 //Ysupov Safuan 17.10.20  
 /*
-Простой калькулятор
+Simple calculator
 
-История версий:
+version History:
 
-Переработана Юсуповым Сафуаном в октябре 2020 (09.10.20)
-Переработан Бьярне Страуструпом в мае 2007 г.
-Переработан Бьярне Страуструпом в августе 2006 г.
-Переработан Бьярне Страуструпом в августе 2004 г.
-Разработан Бьярне Страуструпом (bs@cs.tamu.edu) весной 2004 г.
+Revised by Yusupov Safuan in October 2020 (09.10.20)
+Revised by Bjarne Stroustrup in may 2007
+Revised by Bjarne Stroustrup in August 2006.
+Revised by Bjarne Stroustrup in August 2004.
+Developed by Bjarne Stroustrup (bs@cs.tamu.edu) in the spring of 2004.
 
-Эта программа реализует основные выражения калькулятора.
-Ввод осуществляется из потока cin ; вывод - в поток cou t.
+This program implements basic calculator expressions.
+Input is made from the CIN stream ; output is made to the cou t stream.
 
-Грамма тика для ввода :
+Gram TICA to enter :
 
-Инструкция:
-  Выражение
-  Вывод
-  Выход
+Instruction:
+ The expression
+ Conclusion
+ Exit
 
-Вывод:
-    ;
-Выход:
-    q
+Conclusion:
+ ;
+Output:
+q
 
-Выражение:
-  Терм
-  Выражение + Терм
-  Выражение - Терм
+Expression:
+Term
+ Expression + Term
+ Expression-Term
 
-Терм:
-  Первичное_выражение
-  Терм * Первичное_выражение
-  Терм / Первичное_выражение
-  Терм % Первичное_ выражение
+Term:
+ Primary expression
+ Term * Primary expression
+ Term / Primary Expression
+ Term % Primary expression
 
-Первичное_выражение :
-  Число
-  ( Выражение )
-  - Первичное_выражение
-  + Первичное_выражение
+Particleengine :
+ The number
+ ( Expression )
+ - Primary expression
+ + Particleengine
 
-Число :
-  Литерал_с_плавающей_точкой
+Number :
+ Literalistically
 
-Ввод из потока cin через Token stream с именем ts.
+Input from the cin stream via a Token stream named ts.
 */
 #include "std_lib_facilities.h"
 #include <iostream>
@@ -54,30 +54,32 @@
 using namespace std;
 
 int main()
-try
 {
-    cout << "use 'help'"<<endl<<endl;
-    setlocale(LC_ALL, "Russian");
-    //Predefined names
-    define_name("pi", 3.1415926535);
-    define_name("e", 2.7182818284);
-    define_name("k", 1000);
+    try
+    {
+        cout << "use 'help'" << endl << endl;
+        setlocale(LC_ALL, "Russian");
+        //Predefined names
+        define_name("pi", 3.1415926535);
+        define_name("e", 2.7182818284);
+        define_name("k", 1000);
 
-    calculate();
+        calculate();
 
-    //keep_window_open(); // Keeps the console window open
-    return 0;
-}
-catch (runtime_error& e)   //exception
-{
-    cerr << e.what() << '\n';
-    keep_window_open("~~");
-    return 1;
-}
+        //keep_window_open(); // Keeps the console window open
+        return 0;
+    }
+    catch (runtime_error& e)   //exception
+    {
+        cerr << e.what() << '\n';
+        keep_window_open("~~");
+        return 1;
+    }
 
-catch (...)
-{
-    cerr << "exception \n";
-    keep_window_open("~~");
-    return 2;
+    catch (...)
+    {
+        cerr << "exception \n";
+        keep_window_open("~~");
+        return 2;
+    }
 }

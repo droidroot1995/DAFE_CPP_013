@@ -196,7 +196,7 @@ double declaration()
     string var_name = t.name;
     Token t2 = ts.get();
     if (t2.kind != '=')
-        error("Пропущени символ '=' в объявлении", var_name);
+        error("Omitted the ' = ' character in the ad", var_name);
     double d = expression();
     define_name(var_name, d);
     return d;
