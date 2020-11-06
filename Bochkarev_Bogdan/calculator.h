@@ -10,7 +10,6 @@
 #define calculator_h
 
 #include "logic.hpp"
-#include <Python/Python.h>
 
 int calculator();
 

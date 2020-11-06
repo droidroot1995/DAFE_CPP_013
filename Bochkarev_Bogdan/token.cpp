@@ -1,17 +1,18 @@
 //
-//  token.hpp
+//  token.сpp
 //  Calculator 1.2
 //
 //  Created by Bogdan Bochkarev on 9/30/20.
 //  Copyright © 2020 Bogdan Bochkarev. All rights reserved.
 //
 
-#ifndef token_hpp
-#define token_hpp
+#ifndef token_cpp
+#define token_cpp
 
 #include <stdio.h>
 #include <iostream>
 #include "declare.hpp"
+using namespace std;
 
 double val;
 

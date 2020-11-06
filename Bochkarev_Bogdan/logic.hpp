@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <cmath>
 #include "declare.hpp"
-#include "scientific_options.hpp"
 
 void init();
 void calculate();
