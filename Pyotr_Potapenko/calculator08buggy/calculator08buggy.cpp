@@ -1,4 +1,6 @@
 #include "calculate.h"
+#include "config.h"
+#include "iomodeutils.h"
 
 extern Symbol_table symbol_table;
 extern Token_stream ts;
@@ -7,6 +9,11 @@ int main ()
 {
     try
     {
+        Config config = getConfig();
+
+        setInputMode(config);
+        setOutputMode(config);
+
         symbol_table.define("pi", 3.141592653589793 ,true);
         symbol_table.define("e",  2.718281828459045, true);
         symbol_table.define("k", 1000);
