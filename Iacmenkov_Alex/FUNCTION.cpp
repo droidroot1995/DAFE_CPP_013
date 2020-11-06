@@ -3,6 +3,7 @@
 //
 
 #include "FUNCTION.h"
+#include <fstream>
 Symbol_table syta;
 Token_stream ts;
 double primary ()
@@ -54,6 +55,7 @@ double primary ()
             double angl = expression();
             if (angl == 0 || angl == 180)
                 return 0; // return true zero
+            token = ts.get();
             if (token.kind != ')')
                 error("ERROR: there must be ')' after 'x' in sin(x)");
             return sin(angl*M_PI/180);
@@ -66,6 +68,7 @@ double primary ()
             double angl = expression();
             if (angl == 90 || angl == 270)
                 return 0; // return 0 instead of 8.766e-11
+            token = ts.get();
             if (token.kind != ')')
                 error("ERROR: there must be ')' after 'x' in cos(x)");
             return cos(angl*M_PI/180);
@@ -80,6 +83,7 @@ double primary ()
                 error("ERROR: tg Undefined;");
             if (angl == 0 || angl == 180)
                 return 0;
+            token = ts.get();
             if (token.kind != ')')
                 error("ERROR: there must be ')' after 'x' in tg(x)");
             return tan(angl*M_PI/180);
@@ -94,6 +98,7 @@ double primary ()
                 error("ERROR: cot Undefined;");
             if (angl == 90 || angl == 270)
                 return 0;
+            token = ts.get();
             if (token.kind != ')')
                 error("ERROR: there must be ')' after 'x' in ctg(x)");
             return 1/tan(angl*M_PI/180);
@@ -106,6 +111,7 @@ double primary ()
             double d = expression();
             if (d <= 0)
                 error("ERROR: ln Undefined for negative arguments;");
+            token = ts.get();
             if (token.kind != ')')
                 error("ERROR: there must be ')' after 'x' in ln(x)");
             return log(d);
@@ -236,14 +242,18 @@ void calculate ()
 {
     syta.define_name ("pi", 3.141592653589793, true);
     syta.define_name ("e",  2.718281828459045, true);
+//    ofstream out("out");
+//if(!out)
+//    error("ERROR: Can't open file");
     while (cin)
         try
         {
             cout << prompt;
             Token t = ts.get();
+//            in  ts.get();
             while (t.kind == print)
                 t = ts.get();
-            if (t.kind == quit) return;
+            if (t.kind == quit){/*in.close(); out.close();*/ return;}
             if (t.kind == help[0]) {printHelp(); continue;};
             if (t.kind == showval[0]) {syta.print_values(); continue;}
             ts.putback(t);

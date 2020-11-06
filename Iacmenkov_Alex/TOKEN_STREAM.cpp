@@ -10,6 +10,9 @@ void Token_stream::putback (Token t) // The putback() member function puts its a
     buffer = t;
     full = true;
 }
+//ifstream in("Text.txt");
+//if(!in)
+//    error("ERROR:Can't open file")l;
 Token Token_stream::get ()
 {
     if (full)
@@ -21,6 +24,7 @@ Token Token_stream::get ()
     ch = getchar();
     while (ch == ' ')
         ch = getchar();
+//  in >> ch;
     switch (ch)
     {
         case print:
