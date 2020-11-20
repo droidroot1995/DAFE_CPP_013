@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/calcute.dir/main.cpp.o CMakeFiles/calcute.dir/FUNCTION.cpp.o CMakeFiles/calcute.dir/TOKEN_STREAM.cpp.o CMakeFiles/calcute.dir/Variable.cpp.o  -o calcute 
