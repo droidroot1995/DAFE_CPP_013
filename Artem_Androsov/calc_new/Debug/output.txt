@@ -1,0 +1,50 @@
+> = 4
+> = -4
+> = 48
+> = 24
+> = 3.33333
+> Deviding by zero
+> = 0
+> = 20
+> info loss
+> info loss
+> info loss
+> %: deviding by zero
+> = 8
+> = -45
+> = -225
+> variable name is missing
+> get: undefined variable l
+> variable name is missing
+> get: undefined variable set
+> = 6.28319
+> can not change value of a const
+> pi second defining
+> x second defining
+> get: undefined variable pipipi
+> = 57.1069
+> = 7.72858
+> = 1.00157
+> sqrt: a negative number
+> = 2
+> expression is needed
+> = 38.344
+> = 2
+> expression is needed
+> = 7
+> = 8
+> = 6.28319
+> expression is needed
+> %: deviding by zero
+> = 2
+> variable name is missing
+> = 0
+> get: undefined variable a
+> get: undefined variable a
+> expression is needed
+> wrong token
+> wrong token
+> = 8
+> = 6.28319
+> get: undefined variable using
+> Please enter a character to exit
