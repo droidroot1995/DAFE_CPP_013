@@ -1,4 +1,3 @@
-#pragma once
 class vector1 
 {
 	int sz;

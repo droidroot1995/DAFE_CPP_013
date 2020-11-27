@@ -1,2 +1,2 @@
 ﻿  vector.cpp
-C:\Users\andro\Desktop\DAFE_CPP_013\Artem_Androsov\vector\vector\vector2.h(22,1): error C2397: Преобразование из "size_t" в "int" требует сужающего преобразования.
+  vector.vcxproj -> C:\Users\andro\Desktop\DAFE_CPP_013\Artem_Androsov\vector\Debug\vector.exe

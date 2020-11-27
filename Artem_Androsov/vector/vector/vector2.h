@@ -1,4 +1,3 @@
-#pragma once
 class vector2
 {
 	int sz;
@@ -17,15 +16,15 @@ public:
 	}
 
 	vector2(std::initializer_list<double> lst)
-		:sz{lst.size()},
-		elem{new double[sz]}
+		:sz{ static_cast<int>(lst.size()) },
+		elem{ new double[static_cast<int>(lst.size())] }
 	{
-		std::copy(lst.begin(),lst.end(),elem);
+		std::copy(lst.begin(), lst.end(), elem);
 	}
 
 	vector2(const vector2& arg)
-		:sz{arg.sz},
-		elem{new double[arg.sz]}
+		:sz{ arg.sz },
+		elem{ new double[arg.sz] }
 	{
 		std::copy(arg.elem, arg.elem + sz, elem);
 	}
@@ -56,6 +55,15 @@ public:
 		a.elem = nullptr;
 		a.sz = 0;
 		return *this;
+	}
+
+	double* operator[] (int n)
+	{
+		return &elem[n];
+	}
+	double* operator[] (int n) const
+	{
+		return &elem[n];
 	}
 
 	~vector2()
