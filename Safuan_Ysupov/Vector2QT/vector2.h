@@ -6,59 +6,61 @@ using namespace std;
 
 class vector
 {
-    int sz;          //Размер
-    double* elem;    // Указатель на первый элемент (типа double)
+    int sz;          // The size
+    double* elem;    // Pointer to the first element (of type double)
 public:
-    vector(int s) :           //Конструктор
-        sz{ s },              // Инициализация члена sz
-        elem{ new double[sz] }   // Инициализация члена elem
+    vector(int s) :           //Constructor
+        sz{ s },              // sz member initialization
+        elem{ new double[sz] }   // Elem member initialization
     {
-        for (int i = 0; i < sz; i++)  // инициализация
-            elem[i] = 0.0;            // элементов
+        for (int i = 0; i < sz; i++)  // initialization
+            elem[i] = 0.0;            // elements
     }
 
-    vector(vector&& a);          //Перемещающий конструктор
-    vector& operator=(vector&&); //Перемещающее присваивание
-    vector(const vector&); //Конструктор копирования
+    vector(vector&& a);          // Moving constructor
+    vector& operator=(vector&&); // Relocation assignment
+    vector(const vector&);       // Copy constructor
 
-    double &operator[](int n) //Для неконстантных векторов
-    {
-        return elem[n];
-    }
-
-    double operator[](int n) const //для константных векторов
+    double &operator[](int n) // For non-const vectors
     {
         return elem[n];
     }
 
-    vector& operator=(const vector&); //Копирующее присваивание
-    //Конструктор со списком инициализации
+    double &operator[](int n) const // for constant vectors
+    {
+        return elem[n];
+    }
+
+    vector& operator=(const vector&); // Copy assignment
+    // Constructor with initialization list
+    // needed to initialize the list so that
+    // you don't need to initialize each separately
     vector(initializer_list<double> lst)
     {
         sz= lst.size();
-        elem=new double[sz]; //Неинициализированная память
-        // Инициализация с помощью std::copy ();
-        copy(lst.begin(), lst.end(), elem); //за счёт этого делаем vector v1 = { 1,2,3 };
-        /*Он (copy)
-копирует последовательность элементов, определяемую первыми двумя
-аргументами (в данном случае - начало и конец initiali zer_list)
-в последовательность элементов, начало которой указывает
-его третий аргумент (в данном случае - последовательность
-элементов вектора, начинающаяся с elem). */
+        elem=new double[sz]; // Uninitialized memory
+        // Initialization with std :: copy ();
+        copy(lst.begin(), lst.end(), elem); // due to this we make vector v1 = {1,2,3};
+        /* He (copy)
+        copies the sequence of elements defined by the first two
+        arguments (in this case, the start and end of the initializer_list)
+        into a sequence of elements whose beginning indicates
+        its third argument (in this case, the sequence
+        vector elements, starting with elem). */
     }
 
 
-    ~vector()           //Деструктор, освобождает память
+    ~vector()           // Destructor, free memory
     {
         delete[] elem;
     }
-    // Конструктор: размещаает в памяти s чисел
-    // типа double, направляет на них указатель
-    // elem и сохраняет s в член sz
+    // Constructor: allocates s numbers in memory
+    // of type double, points to them pointer
+    // elem and stores s into sz
 
-    int size() const { return sz; } //Текущий размер
-    double get(int n) const { return elem[n]; } //Чтение
-    void set(int n, double v) { elem[n] = v; } //Запись
+    int size() const { return sz; } //Current size
+    double get(int n) const { return elem[n]; } //Reading
+    void set(int n, double v) { elem[n] = v; } //Writing
 };
 
 #endif // VECTOR2_H

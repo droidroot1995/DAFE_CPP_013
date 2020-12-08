@@ -4,31 +4,32 @@
 //индексирования.
 //Запутался между Vector и vector
 
-struct Range_error:out_of_range //Расширенное сообщение о выходе
-{                               //за пределы диапазона
-    int index;
-    Range_error(int i):out_of_range{"Range error"}, index{i}{}
-};
+//struct Range_error:out_of_range //Расширенное сообщение о выходе
+//{                               //за пределы диапазона
+//    int index;
+//    Range_error(int i):
+//        out_of_range{"Range error"}, index{i}{}
+//};
 
-template<typename T> struct Vector: public vector<T>
-{
-    using size_type=typename vector<T>::size_type;
-    using vector<T>::vector; //Использование конструкторов vector<T>
+//template<typename T> struct Vector: public vector<T>
+//{
+//    using size_type=typename vector<T>::size_type;
+//    using vector<T>::vector; //Использование конструкторов vector<T>
 
-    T&operator[](size_type i) //Вместо возврата at(i)
-    {
-        if (i<0||this->size()<=i)
-            throw Range_error(i);
-        return vector<T>::operator[](i);
-    }
+//    T&operator[](size_type i) //Вместо возврата at(i)
+//    {
+//        if (i<0||this->size()<=i)
+//            throw Range_error(i);
+//        return vector<T>::operator[](i);
+//    }
 
-    const T& operator[](size_type i) const
-    {
-        if (i<0||this->size()<=i)
-            throw Range_error(i);
-        return vector<T>::operator[](i);
-    }
-};
+//    const T& operator[](size_type i) const
+//    {
+//        if (i<0||this->size()<=i)
+//            throw Range_error(i);
+//        return vector<T>::operator[](i);
+//    }
+//};
 
 template<typename T, typename A> vector<T,A>::vector(const initializer_list<T>& lst): //initializer_list<T> lst
     sz{ int(lst.size())},

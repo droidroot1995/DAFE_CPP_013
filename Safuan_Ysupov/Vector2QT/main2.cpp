@@ -25,6 +25,10 @@ int main()
     cout << v1.get(1) << endl;
     cout << v3.get(1) << endl;
 
+    const vector v6{v1};
+    const vector v5{v6};
+    const vector v4(2);
+    cout<<"v4 "<<v4[0]<<endl;
     vector v(10);
     for (int i=0; i<v.size(); i++)
     {

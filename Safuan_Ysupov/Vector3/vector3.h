@@ -43,6 +43,7 @@ template<typename T, typename A>struct vector_base
     int sz;    //Количество элементов
     int space; //Размер выделенной памяти
 
+    vector_base(){};
     vector_base(A& a, int n): //было const A& по Страусттрупу
         alloc{a}, elem{a.allocate(n)}, sz{n}, space{n}{}
     ~vector_base() {alloc.deallocate(elem,space);}
@@ -105,6 +106,7 @@ public:
     T get(int n) const { return elem[n]; } //Чтение
     void set(int n, T v) { elem[n] = v; } //Запись
 };
+
 
 
 
