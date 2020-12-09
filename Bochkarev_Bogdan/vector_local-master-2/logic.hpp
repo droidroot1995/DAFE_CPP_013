@@ -23,12 +23,25 @@ struct Range_error: std::out_of_range {
 };
 
 
-template<typename T, typename A = std::allocator<T>> class Vector {
+template<typename T, typename A>
+struct vector_base {
+    A alloc;    // memory allocator
+    int sz;     // quantity of elements
+    T* elem;    // pointer to the start of the allocated memory
+    int space;  // size of allocated memory
+    
+    vector_base();
+    vector_base(int);
+    vector_base(const A&, int);
+    vector_base(const vector_base&);
+    vector_base(std::initializer_list<T>);
+    ~vector_base();
+};
+
+
+template<typename T, typename A = std::allocator<T>>
+class Vector : private vector_base<T, A> {
 private:
-    A alloc;
-    int sz; // Размер
-    T* elem;
-    int space;
     void reserve(int);
 
 public:
