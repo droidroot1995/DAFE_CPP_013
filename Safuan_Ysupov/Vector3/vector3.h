@@ -19,9 +19,14 @@
 из разных типов (например. в стандартной библиотеке С++: эта тема
 будет обсуждаться в главах 20 и 21 ). */
 
-#include<algorithm>
+#include <algorithm>
 #include <iostream>
 #include <memory>
+#include <initializer_list>
+#include <string>
+#include <stdexcept>
+#include <stdio.h>
+
 using namespace std;
 
 /*необходимо
@@ -34,24 +39,36 @@ unique_ptr.*/
 //дает возможность управлять выделением и освобождением памяти
 //для элементов контейнера.
 
+struct Range_error:out_of_range //Расширенное сообщение о выходе
+{                               //за пределы диапазона
+    int index;
+    Range_error(int i):
+        out_of_range{"Range error"}, index{i}{}
+};
+
+
 // класс vector _ base работает с памятью, а не
 //с типизированными объектами.
 template<typename T, typename A>struct vector_base
 {
     A alloc;   //Распределение памяти
-    T* elem;   //Начало выделенной памяти
     int sz;    //Количество элементов
+    T* elem;   //Начало выделенной памяти
     int space; //Размер выделенной памяти
 
-    vector_base(){};
-    vector_base(A& a, int n): //было const A& по Страусттрупу
-        alloc{a}, elem{a.allocate(n)}, sz{n}, space{n}{}
-    ~vector_base() {alloc.deallocate(elem,space);}
+    vector_base();
+    vector_base(int s);
+    vector_base(const A& a, int s);
+    vector_base(const vector_base& arg);
+    vector_base(initializer_list<T> lst);
+    //vector_base(A& a, int n): //было const A& по Страусттрупу
+    //    alloc{a}, elem{a.allocate(n)}, sz{n}, space{n}{}
+    ~vector_base();
 };
 
 //template<class T> тоже самое template<typename T>
-template<typename T, typename A=allocator<T>> class vector:private vector_base<T,A> //Element - набор требований, которым должен соответствовать элемент(не понятно)
-{
+template<typename T, typename A = std::allocator<T>>
+class Vector : private vector_base<T, A> {
     /*
      * Инвариант:
      * для 0<=n<sz значение elem[n] является n-м элементом
@@ -59,43 +76,34 @@ template<typename T, typename A=allocator<T>> class vector:private vector_base<T
      * усли sz<space, то после elem[sz-1] есть место
      * для (space-sz) чисел типа double
     */
-    A alloc; //Работает с памятью, выделяемой для элементов
-    int sz;          //Размер
-    T* elem;    // Указатель на первый элемент (типа double)
-    int space; //Количество элементов плюс "свободное место"/ "слоты" для новых элементов
-               // (текущий выделенный размер)
 public:
 
-    vector():sz{0}, elem{nullptr}, space{0} {} //конструктор по умолчанию
+    Vector(); //конструктор по умолчанию
 
     // Конструктор: размещаает в памяти s чисел
     // типа double, направляет на них указатель
     // elem и сохраняет s в член sz
     //Конструктор со словом explicit не допускает неявные преобразования
-    explicit vector(int s): sz{s}, elem{new T[s]}, space{s}
-    {
-        for (int i=0; i<sz; i++) //инициализация элементов
-            elem[i]=0;
-    }
+    explicit Vector(int s);
 
-    vector(const vector& a); //Конструктор копирования
-    vector& operator=(const vector& a); //Конструктор присваивания
+    Vector(const Vector& a); //Конструктор копирования
+    Vector& operator=(const Vector& a); //Конструктор присваивания
 
-    vector(vector&& a);          //Перемещающий конструктор (по книге почему-то const)
-    vector& operator=(vector&&); //Перемещающее присваивание (по книге почему-то const)
+    Vector(Vector&& a);          //Перемещающий конструктор (по книге почему-то const)
+    Vector& operator=(Vector&&); //Перемещающее присваивание (по книге почему-то const)
 
-    ~vector()  {delete[] elem;}        //Деструктор, освобождает память
+    ~Vector();        //Деструктор, освобождает память
 
     T& at(int n);       //доступ с проверкой
     const T& at(int n) const; //доступ с проверкой
 
     T &operator[](int n); //Для неконстантных векторов, Доступ без проверки
-    const T& operator[](int n) const { return elem[n]; }//для константных векторов без проверки
+    const T& operator[](int n) const; //для константных векторов без проверки
 
 
     //Конструктор со списком инициализации
-    vector(const initializer_list<T>& lst);
-    int size() const { return sz; } //Текущий размер
+    Vector(initializer_list<T> lst);
+    int size() const; //Текущий размер
     int capacity() const; //Узнать размер доступной памяти
 
     void reserve(int newalloc); //добавляет память для новых элементов
@@ -103,8 +111,8 @@ public:
     void push_back(const T& val); //Увеличивает размер вектора на 1
                               //инициализирует новый элемент значением d
 
-    T get(int n) const { return elem[n]; } //Чтение
-    void set(int n, T v) { elem[n] = v; } //Запись
+    T get(int n) const; //Чтение
+    void set(int n, T v); //Запись
 };
 
 
