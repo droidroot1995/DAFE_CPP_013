@@ -17,6 +17,7 @@
 using namespace std;
 
 const string welcome = "Welcome to Calculator 2.0 by Bogdan Bochkarev.\nIt deals with operations +, -, *, /, %, ^ and !.\nTo calculate factorial, please write '!' sign BEFORE number.\nGot not you wanted? Arrange parenthesis!\nUse English characters only!\nWrite ';' sign and 'Return' key to show the result of inputed expression.\nWrite 'q' or 'exit' to quit the program.\nGot stucked? Enter ';' and return key, it must help.\nIt supports the following algebraic functions: sin(x), cos(x), tan(x) or tg(x), cot(x) or ctg(x), ln(x) or log(x) and sqrt(x). Parenthesis are obligatory!\nIt also deals with variables. Use the keyword 'let' var_name = var_value to initialize your variable, and 'set' to change its value.\nPi and e constants are available and it's prohibited to change them.\n\nPlease press any key to start.";
+const string wellcum = welcome;
 const string declkey = "let";
 const string chankey = "set";
 const string sqrtkey = "sqrt";

@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <cmath>
-#include "declare.hpp"
 #include "scientific_options.hpp"
 #include "token.hpp"
 

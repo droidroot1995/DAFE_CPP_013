@@ -1,0 +1,53 @@
+1
+
+
+sqrt(sin(0))
+let x = x;
+x = 7;
+x=7;
+let x =7;
+letx=7;
+let 7 = 8;
+let pi = 3.14;
+set pi = 3.14;
+x +5;
+x = x+5;
+set x = x+5;
+67+9;
+67/9;
+67.0 + 67.9;
+67 + 67.9
+!11;
+11 + !11;
+let x = 5 + 5*sin(12);
+set x = 5 + 5*sin(12);
+set x = !x;
+set x  =y;
+let y = x;
+set y = y+sqrt(x);
+using namespace std;
+let tan = tan(x);
+tan + 5;
+tan(5);
+log(-tan(cos(sin(ctg(1)))));
+log(tan(cos(sin(ctg(1)))));
+sqrt(log(tan(cos(sin(ctg(1))))));
+let set = 8;
+set let = 9;
+!!3;
+!sqrt;
+let q = 9;
+;
+7+8*78/22+sin(5);
+5^(6.1*22);
+e^log(5);
+pi*(e^log(pi));
+pi*e^log(pi);
+let переменная = x;
+let y8y = x;
+x*8;
+x8;
+8x;
+let g = sqrt(60-120);
+s
+q
