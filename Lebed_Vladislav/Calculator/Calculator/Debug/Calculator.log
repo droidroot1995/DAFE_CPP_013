@@ -1,0 +1,9 @@
+﻿  Calculator.cpp
+  Structure.cpp
+  Token.cpp
+  Variable.cpp
+C:\Users\profs\Desktop\Proganie\С++\DAFE_CPP_013\Lebed_Vladislav\Calculator\Calculator\Variable.cpp(20,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\profs\Desktop\Proganie\С++\DAFE_CPP_013\Lebed_Vladislav\Calculator\Calculator\Variable.cpp(32,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\profs\Desktop\Proganie\С++\DAFE_CPP_013\Lebed_Vladislav\Calculator\Calculator\Variable.cpp(44,23): warning C4018: <=: несоответствие типов со знаком и без знака
+  Создание кода...
+  Calculator.vcxproj -> C:\Users\profs\Desktop\Proganie\С++\DAFE_CPP_013\Lebed_Vladislav\Calculator\Debug\Calculator.exe

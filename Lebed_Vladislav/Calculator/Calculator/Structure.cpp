@@ -30,8 +30,8 @@ double declaration()
     {
         error("name expected in declaration");
     }
-
     string var = t.name;
+
     if (is_declared(var))
     {
         error(var, " declared twice");

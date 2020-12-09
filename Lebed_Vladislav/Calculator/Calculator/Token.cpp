@@ -52,7 +52,7 @@ Token Token_stream::get()
     case '!':
     case 'h':
         return Token{ ch };
-    case 'L':
+    case '#':
         return Token{ let };
 
     case '.':

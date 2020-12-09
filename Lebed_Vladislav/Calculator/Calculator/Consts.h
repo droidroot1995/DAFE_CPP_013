@@ -6,8 +6,9 @@ constexpr char quit = 'q';
 constexpr char print = ';';
 constexpr char number = '8';
 constexpr char name = 'a';
-constexpr char let = 'L';
+constexpr char let = '#';
 constexpr char help = 'h';
+constexpr int k = 1000;
 
 
 const string prompt = "> ";

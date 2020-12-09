@@ -1,0 +1,55 @@
+> = 4
+> = -2
+> = 3
+> Bad token
+> = 3
+> = 12
+> = 1104
+> = 26
+> get: undefined name awe
+> = 3
+> = 6
+> = 6
+> = 4
+> = 0.25
+> divide by zero
+> = 21.3333
+> = 0
+> = 2.125
+> = 48.134
+> Divide by zero, ( % )
+> = 3
+> get: undefined name rt
+> = 58
+> = 8
+> = 3
+> = 10.6667
+> = 26.8
+> = 3.22
+> = 1.69
+> = 12
+> = 0
+> = 8
+> sqrt(value), value < 0 - Wrong operation
+> = 7.28011
+> = 2.94037
+> = 2
+> = 10.583
+> = 6.7082
+> = 3.14159
+> = 2.71828
+> = 0.423311
+> = 5
+> = 13
+> = 40
+> = 2.23607
+> = 81
+> = 3
+> = 6
+> = 120
+> Factorial(value), value < 0 - Wrong operation
+> Factorial(value), value - Natural number
+> This Calculator includes basic maths operations: '+', '-', '*', '/'; 
+and some functions: '^'(^value), '!'(!value), '%' 
+
+> 
