@@ -56,6 +56,15 @@ int main()
 
 	//vector3 using
 	{
+		vector3<int> v31(3);
+		std::cout << "v31 size is " << v31.size() << std::endl;
+		std::cout << std::endl;
 
+		v31[0] = 3;
+		v31[1] = 4;
+		v31[2] = 7;
+
+		std::cout << v31[0] << ' ' << v31[1] << ' ' << v31[2] << std::endl;
+		std::cout << std::endl;
 	}
 }
