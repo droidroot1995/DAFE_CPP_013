@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/barly/CLionProjects/VectoR/main.cpp
+iostream
+-
+vecc.h
+/Users/barly/CLionProjects/VectoR/vecc.h
+
+/Users/barly/CLionProjects/VectoR/vecc.cpp
+vecc.h
+/Users/barly/CLionProjects/VectoR/vecc.h
+
+/Users/barly/CLionProjects/VectoR/vecc.h
+initializer_list
+-
+algorithm
+-
+memory
+-
+iostream
+-
+
