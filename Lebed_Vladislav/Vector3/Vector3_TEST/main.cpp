@@ -1,11 +1,56 @@
 #include <iostream>
 #include <algorithm>
+#include <cstdlib>
 
 struct Range_error :std::out_of_range
 {
 	int index;
 	Range_error(int i) :std::out_of_range("Range error"), index{ i }{}
 };
+
+template<typename T>
+class allocator
+{
+	T* allocate(int n);
+	void deallocate(T* p, int n);
+
+	void construct(T* p, const T& v);
+	void destroy(T* p);
+};
+
+template<typename T>
+T* allocator<T>::allocate(int n)
+{
+	// c
+	// return static_cast<T*>(malloc(sizeof (T) * n))
+	
+	// c++
+	return reinterpret_cast<T*>(new char[sizeof(T) * n]);
+}
+
+template<typename T>
+void allocator<T>::deallocate(T* p, int n)
+{
+	//c++
+	delete[] reinterpret_cast<char*> (p);
+
+	// c
+	//free(p);
+}
+
+template<typename T>
+void allocator<T>::construct(T* p, const T& v)
+{
+	//c++
+	new(p) T(v);
+}
+
+template<typename T>
+void allocator<T>::destroy(T* p)
+{
+	// c++
+	p->~T();
+}
 
 template<typename T, typename A>
 struct vector_base
@@ -19,10 +64,10 @@ struct vector_base
 		: elem(alloc.allocate(0)), sz(0), space(0) {}
 
 	vector_base(int n)
-		: elem{ alloc.allocate(n) }, sz{ n }, space{ n } {}
+		: elem{ alloc.allocate(n) }, sz{ 0 }, space{ n } {}
 
 	vector_base(const A& a, int n)
-		: alloc{ a }, elem{ alloc.allocate(n) }, sz{ n }, space{ n } {}
+		: alloc{ a }, elem{ alloc.allocate(n) }, sz{ 0 }, space{ n } {}
 
 	vector_base(const vector_base&);
 
@@ -36,7 +81,7 @@ template<typename T, typename A>
 vector_base<T, A>::vector_base(const vector_base& a)
 {
 	T* p = alloc.allocate(a.sz);
-	for (int i = 0; i < a.sz; ++i)
+	for (int i = 0; i < a.sz; ++i) 
 		alloc.construct(&p[i], a.elem[i]);
 	elem = p;
 	sz = a.sz;
@@ -50,7 +95,7 @@ vector_base<T, A>::vector_base(std::initializer_list<T> lst)
 	std::copy(lst.begin(), lst.end(), elem);
 }
 
-template <typename T, typename A = std::allocator<T>>
+template <typename T, typename A = std::allocator<T>> 
 class vector : private vector_base<T, A>
 {
 
@@ -63,10 +108,9 @@ public:
 	vector() : sz{ 0 }, elem{ nullptr }, space{ 0 } {};
 
 	explicit vector(int s)					// initialisation
-		: sz{ s }, elem{ new T[s] }, space{ s }
+		: sz{ 0 }, elem{ nullptr }, space{ 0 }
 	{
-		for (int i = 0; i < sz; ++i)
-			elem[i] = 0;
+		resize(s);
 	}
 	vector(const std::initializer_list<T>& lst);
 
@@ -150,27 +194,51 @@ vector<T, A>& vector<T, A>::operator= (const vector&& a)
 }
 
 template<typename T, typename A>
-void vector<T, A>::reserve(int newalloc)
+void vector<T,A>::reserve(int newalloc)
 {
 	if (newalloc <= this->space)
 		return;
 	vector_base<T, A>
 		b(this->alloc, newalloc);
-	std::uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
+	std::uninitialized_copy(elem, elem + sz , b.elem);
+	b.sz = sz;
 	for (int i = 0; i < this->sz; ++i)
 		this->alloc.destroy(&this->elem[i]);
-	std::swap<vector_base<T, A>>(*this, b);
+	this->alloc.deallocate(this->elem, this->space);
+	//std::swap<vector_base<T, A>&>(static_cast<vector_base<T, A>&>(*this), b);
+	this->elem = b.elem; 
+	this->sz = b.sz;
+	this->space = b.space;
+	b.elem = nullptr;
+	b.sz = b.space = 0;
 }
 
 template<typename T, typename A>
 void vector<T, A>::resize(int newsize, T val)
 {
 	reserve(newsize);
-	for (int i = sz; i < newsize; ++i)
-		alloc.construct(&elem[i], val);
-	for (int i = newsize; i < sz; ++i)
-		alloc.destroy(&elem[i]);
-	sz = newsize;
+	if (newsize < sz)
+	{
+		for (T* it = elem + newsize; it < elem + sz; ++it)
+			alloc.destroy(it);
+		sz = newsize;
+	}
+	else
+	{
+		T* i = elem + sz;
+		try
+		{
+			for (int i = sz; i < elem + newsize; ++i)
+				alloc.construct(i, T());
+			sz = newsize;
+		}
+		catch (...)
+		{
+			for (T* it = elem + sz; it < i; ++it)
+				alloc.destroy(it);
+			throw;
+		}
+	}
 }
 
 template<typename T, typename A>
@@ -180,7 +248,8 @@ void vector<T, A>::push_back(const T& val)
 		reserve(8);
 	else if (sz == space)
 		reserve(2 * space);
-	alloc.construct(&elem[sz], val);
+
+	alloc.construct(elem + sz, val);
 	++sz;
 }
 
@@ -208,8 +277,19 @@ T& vector<T, A>::at(int n)
 
 int main()
 {
-	vector<int> v = { 1, 2, 3, 4, 5, 6 };
+	vector<int> v1 = { 10, 11, 12 };
+	vector<int> v = {1, 2, 3, 4, 5, 6};
+	v = v1;
+	vector<std::string> vstr= { "I", "have", "done", "vector" };
+	v.push_back(5);
 	for (int i = 0; i < v.size(); ++i)
 		std::cout << v[i] << ' ';
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < vstr.size(); ++i)
+		std::cout << vstr[i] << ' ';
+
+	std::cout << std::endl;
 	return 0;
 }
