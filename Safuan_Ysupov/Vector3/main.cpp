@@ -6,57 +6,43 @@
 #include <string>
 
 
-void print_some(Vector<int>& v)
+template<typename T>
+void print(const Vector<T>& v)
 {
-    int i=-1;
-    while (cin>>i && i!=-1)
-        try
-    {
-        cout<<"v["<<i<<"]=="<<v.at(i)<<"\n";
+    for(size_t i = 0; i < v.size(); ++i)
+        cout<<v[i]<<" ";
+    cout<<endl;
+}
 
-    }
-    catch (out_of_range)
-    {
-        cout<<"Неверный индекс: "<<i<<"\n";
-    }
+Vector<string> make_vec()
+{
+    Vector<string> res{"car", "bus"};
+    //заполнение вектора
+    res.push_back("plane");
+    res.push_back("ship");
+    return res;
 }
 
 int main()
 {
     Vector<double> v1  { 1,2,3 }; // Три элемента 1.0 , 2 . 0, 3 . 0
-    Vector<double> v2(3); // Три элемента со зна чениями по умолчанию (0. 0)
-    Vector<double> v3{v1}; // Копирующее присваивание
-    v3=v1;
-    cout << v3.get(1) << endl;
-    cout << v1.get(1) << endl;
-    //vector v4{v2};
-    v3.set(1,45);
-    v1.set(1,60);
-    cout << v1.get(1) << endl;
-    cout << v3.get(1) << endl;
+    Vector<double> v3{3.0, 2.1, 10, 4, 5, 5, 5, 5, 5, 5, 5};
+    Vector<double> v5(10);
+    Vector<double> v7{3.0, 2.1, 10, 4, 5, 5, 5, 5, 5, 5, 5};
+    v1.push_back(4.3);
+    v1.push_back(3.2);
+    v1.push_back(10.0);
+    v1[2] = 4;
+    print(v1);
+    v1 = v3;
+    print(v1);
+    cout << endl;
+    cout<<endl;
 
-    cout<<v2.capacity()<<" capacity"<<endl;
-    Vector<int> v(10);
-    for (int i=0; i<v.size(); i++)
-    {
-        v[i]=i;  //v[i] возвращает ссылку на i-й элемент
-        cout<<v[i];
-    }
-    cout<<endl<<v2.capacity();
-    v2=v1;
-    //v2.reserve(7);
-    cout<<endl<<v2.capacity();
-    cout<<v2.get(0)<<endl<<v2[1]<<endl<<v2[2]<<endl<<v2[4]<<endl;
-    v2.resize(10);
-    for (int i=0; i<v2.size(); i++)
-        cout<<v2[i];
-    cout<<v.get(4);
-    Vector<char> vchar{'h', 'f'};
-    cout<<"h "<<vchar.get(0)<<endl;
-    //string s="dsfa";
-    //cout<<s;
-    Vector<string> vstr{"gdfghsj"};
-    cout<<vstr.get(0);
-    v.resize(3);
+    Vector<string> vol(10);
+    Vector<string> vs{"fasfas", "fsds"};
+
+    vol = make_vec();
+    print(vol);
     return 0;
 }
