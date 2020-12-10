@@ -4,185 +4,246 @@
 
 #include "vecc.h"
 
+//------------------------------------------------------------------------------------------------
+
 template<typename T, typename A>
-void vector<T, A>::reserve(int newalloc)
+vector_base<T,A>::vector_base()
+:elem(alloc.allocate(0)), sz(0), space(0)
+{}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector_base<T,A>::vector_base(int n)
+:elem(alloc.allocate(n)), sz(n), space(n)
+{}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector_base<T,A>::vector_base(const A& a, int n)
+:alloc(a), elem(alloc.allocate(n)), sz(n), space(n)
+{}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector_base<T, A>::vector_base(const vector_base& arg)
 {
-    if (newalloc <= space) return;   //Размер не уменьшается
-    T* p = alloc.allocate(newalloc); //Выделяем новую память
-    //Копирование:
-    for (int i=0; i<sz; ++i) alloc.construct(&p[i], elem[i]);
-    //Уничтожение:
-    for (int i=0; i<sz; ++i) alloc.destroy(&elem[i]);
-    alloc.deallocate(elem,space); //Освобождаем старую память
+    T* p = alloc.allocate(arg.sz);
+    for(int i=0; i<arg.sz; ++i)
+        alloc.construct(&p[i], arg.elem[i]);
     elem = p;
-    space = newalloc;
+    sz = arg.sz;
+    space = arg.space;
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-vector<T,A>::vector():sz{0}, elem{nullptr}, space{0} {}
-
-//------------------------------------------------------------------------------------------------
-
-template<typename T, typename A>
-vector<T,A>::vector(int s)
-:sz{s}, elem{new T[sz]}, space{sz}
-{
-    for (int i=0; i<s; ++i) elem[i] = T();
-}
-
-//------------------------------------------------------------------------------------------------
-
-template<typename T, typename A>
-vector<T, A>::vector(std::initializer_list<T> lst):
-sz{static_cast<int>(lst.size())}, elem{new T[sz]}, space{sz}
+vector_base<T, A>::vector_base(std::initializer_list<T> lst)
+:sz{static_cast<int>(lst.size())}, elem{new T[sz]}, space{sz}
 {
     std::copy(lst.begin(), lst.end(), elem);
 }
 
 //------------------------------------------------------------------------------------------------
 
-template<typename T, typename A> vector<T,A>::vector(const vector<T,A>& arg)
-:sz{arg.sz}, elem{new T[arg.sz]}, space{sz}
+template<typename T, typename A>
+vector_base<T, A>::~vector_base()
 {
-    std::copy(arg.elem, arg.elem+sz, elem);
+    alloc.deallocate(elem, space);
 }
 
 //------------------------------------------------------------------------------------------------
 
-template<typename T, typename A> vector<T,A>::vector(vector<T,A>&& a)
-:sz{a.sz}, elem{a.elem}, space{sz}
+template<typename T, typename A>
+vector<T, A>::vector()
+:vector_base<T, A>() {}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector<T, A>::vector(int s)
+:vector_base<T, A>(s)
 {
-    a.sz = 0;  //Делаем вектор a пустым
+    for (int i = 0; i < s; ++i)
+        this->alloc.construct(&this->elem[i], T());
+}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector<T, A>::vector(std::initializer_list<T> lst)
+:vector_base<T, A>(lst)
+{
+    std::copy(lst.begin(), lst.end(), this->elem);
+}
+
+//------------------------------------------------------------------------------------------------
+
+
+template<typename T, typename A>
+vector<T, A>::vector(const vector<T, A>& arg)
+:vector_base<T, A>(arg)
+{}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector<T, A>::vector(vector<T, A>&& a)
+{
+    this->sz = a.sz;
+    this->elem = a.elem;
+    this->space = this->sz;
+    a.sz = 0;
     a.elem = nullptr;
     a.space = a.sz;
 }
 
 //------------------------------------------------------------------------------------------------
 
-template<typename T, typename A> T& vector <T, A>::at(int n)
+//память
+template<typename T, typename A>
+void vector<T, A>::reserve(int newalloc)
 {
-    if(0<=n && n <=sz)
-        return elem[n];
-    throw Out_range (n);
+    if (newalloc <= this->space)
+        return;
+    vector_base<T, A> b(this->alloc, newalloc);
+    std::uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
+    for (int i=0; i < this->sz; ++i)
+        this->alloc.destroy(&this->elem[i]);
+    swap<vector_base<T, A>>(*this, b);
 }
 
 //------------------------------------------------------------------------------------------------
 
-template<typename T, typename A> vector<T, A>& vector<T,A>::operator=(vector<T,A>&& a)   //Перемещаем а в текущий вектор
+template<typename T, typename A>
+T& vector<T, A>::at(int n)
 {
-    delete[] elem;     // Освобождение памяти
-    elem = a.elem;     // Копирование elem и sz a
-    sz = a.sz;
+    if (0 <= n && n <= this->sz)
+        return this->elem[n];
+    throw Out_range(n);
+}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+vector<T, A>& vector<T, A>::operator=(vector<T, A>&& a)
+{
+    this->alloc.destroy(this->elem);
+    this->elem = a.elem;
+    this->sz = a.sz;
     a.sz = 0;
     a.elem = nullptr;
-    return *this;      //Возврат ссылки на себя
-}
-
-//------------------------------------------------------------------------------------------------
-
-template<typename T, typename A> vector<T,A>& vector<T,A>::operator=(const vector<T,A>& a)
-{
-    if (&a == this)
-        return *this; // Самоприсваивание
-    if (a.sz <= space)
-    {
-        for (int i = 0; i<a.sz; ++i)
-            elem[i] = a.elem[i];  // Копируем элементы
-        sz = a.sz;
-        return *this;
-    }
-    T* p = new T[a.sz];  //Выделяем новую память
-    for (int i = 0; i<a.sz; ++i)
-        p[i] = a.elem[i]; //Копируем элементы
-    delete[] elem; //Освобождаем старую память
-    elem = p;
-    space = sz = a.sz; //Устанавливаем указатель на новые элементы
     return *this;
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-T& vector<T,A>::operator[](int n)
+vector<T, A>& vector<T, A>::operator=(const vector<T, A>& a)
 {
-    if (0 <= n && n <= sz) return elem[n];
+    if (&a == this)
+        return *this;
+    if (a.sz <= this->space)
+    {
+        for (int i = 0; i<a.sz; ++i)
+            this->elem[i] = a.elem[i];
+        this->sz = a.sz;
+        return *this;
+    }
+    T* p = this->alloc.allocate(this->sz);
+    for (int i = 0; i<a.sz; ++i)
+        p[i] = a.elem[i];
+    this->alloc.destroy(this->elem);
+    this->elem = p;
+    this->space = this->sz = a.sz;
+    return *this;
+}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+T& vector<T, A>::operator[](int n)
+{
+    return at(n);
+}
+
+//------------------------------------------------------------------------------------------------
+
+
+template<typename T, typename A>
+T vector<T, A>::operator[](int n) const
+{
+    if (0 <= n && n <= this->sz)
+        return this->elem[n];
     throw Out_range(n);
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-T vector<T,A>::operator[](int n) const
+int vector<T, A>::size() const
 {
-    if (0 <= n && n <= sz) return elem[n];
-    throw Out_range(n);
+    return this->sz;
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-int vector<T,A>::size() const
+T vector<T, A>::get(int n) const
 {
-    return sz;
-}
-
-//------------------------------------------------------------------------------------------------
-
-template<typename T, typename A> T vector<T,A>::get(int n) const
-{
-    return elem[n];
-}
-
-//------------------------------------------------------------------------------------------------
-
-template<typename T, typename A> void vector<T,A>::set(int n, T t)
-{
-    elem[n]=t;
+    return this->elem[n];
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-void vector<T,A>::resize(int newsize, T val)
+void vector<T, A>::set(int n, T t)
+{
+    this->elem[n]=t;
+}
+
+//------------------------------------------------------------------------------------------------
+
+template<typename T, typename A>
+void vector<T, A>::resize(int newsize, T val)
 {
     reserve(newsize);
-    //Создаем:
-    for (int i=sz; i<newsize; ++i) alloc.construct(&elem[i],val);
-    //Уничтожение:
-    for(int i = sz; i < newsize; ++i) alloc.destroy(&elem[i]);
-    sz = newsize;
+    for (int i = this->sz; i < newsize; ++i)
+        this->alloc.construct(&this->elem[i], val);
+    for (int i = this->sz; i < newsize; ++i)
+        this->alloc.destroy(&this->elem[i]);
+    this->sz = newsize;
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-void vector<T,A>::push_back(const T& val)
+void vector<T, A>::
+push_back(const T& val)
 {
-    if (space == 0)
-        reserve(8); //Начинаем с 8 элементов
-    else if (sz == space)
-        reserve(2*space); //Выделяем больше памяти
-    alloc.construct(&elem[sz], val); //Добавляем в конец значение val
-
-    ++sz; //Увеличиваем размер
+    if (!this->space) reserve(8);
+    else if (this->sz == this->space) reserve(2*this->space);
+    this->alloc.construct(&this->elem[this->sz], val);
+    ++this->sz;
 }
 
 //------------------------------------------------------------------------------------------------
 
 template<typename T, typename A>
-int vector<T,A>::capacity() const
+int vector<T, A>::capacity() const
 {
-    return space;
+    return this->space;
 }
+
 
 //------------------------------------------------------------------------------------------------
 
-template<typename T, typename A> vector<T,A>::~vector()
-{
-    delete[] elem;
-}
+template<typename T, typename A>
+vector<T, A>::~vector()
+{}
 
 //------------------------------------------------------------------------------------------------
 
@@ -190,3 +251,43 @@ template class vector<double>;
 template class vector<int>;
 template class vector<char>;
 template class vector<std::string>;
+
+
+
+
+
+
+//template<typename T>
+//T* allocator<T>::allocate(int n)
+//{
+//    //c
+//    //return static_cast<T*>(malloc(sizeof(T)*n));
+//
+//    //c++
+//    return (new char[sizeof (T)*n]);
+//}
+//
+////------------------------------------------------------------------------------------------------
+//
+//template<typename T>
+//void allocator<T>::deallocate(T* p, int n)
+//{
+//    //c++
+//    delete[] reinterpret_cast<char*>(p);
+//}
+//
+////------------------------------------------------------------------------------------------------
+//
+//template<typename T>
+//void allocator<T>::construct(T *p, const T &v)
+//{
+//    new (p) T(v);
+//}
+//
+////------------------------------------------------------------------------------------------------
+//
+//template<typename T>
+//void allocator<T>::destroy(T *p)
+//{
+//    p->~T();
+//}

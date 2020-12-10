@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/barly/CLionProjects/VectoR/main.cpp" "/Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles/VectoR.dir/main.cpp.o"
-  "/Users/barly/CLionProjects/VectoR/vecc.cpp" "/Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles/VectoR.dir/vecc.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles/VectoR.dir/main.cpp.o"
+  "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp" "/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles/VectoR.dir/vecc.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

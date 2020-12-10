@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/Users/barly/CLionProjects/VectoR/main.cpp
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp
 iostream
 -
 vecc.h
-/Users/barly/CLionProjects/VectoR/vecc.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
 
-/Users/barly/CLionProjects/VectoR/vecc.cpp
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp
 vecc.h
-/Users/barly/CLionProjects/VectoR/vecc.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
 
-/Users/barly/CLionProjects/VectoR/vecc.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
 initializer_list
 -
 algorithm
@@ -24,5 +24,9 @@ algorithm
 memory
 -
 iostream
+-
+cstdlib
+-
+stdexcept
 -
 

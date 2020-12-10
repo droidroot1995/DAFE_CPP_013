@@ -63,10 +63,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/barly/CLionProjects/VectoR
+CMAKE_SOURCE_DIR = /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/barly/CLionProjects/VectoR/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/VectoR.dir/depend.make
@@ -79,29 +79,29 @@ include CMakeFiles/VectoR.dir/flags.make
 
 CMakeFiles/VectoR.dir/main.cpp.o: CMakeFiles/VectoR.dir/flags.make
 CMakeFiles/VectoR.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VectoR.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VectoR.dir/main.cpp.o -c /Users/barly/CLionProjects/VectoR/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VectoR.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VectoR.dir/main.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp
 
 CMakeFiles/VectoR.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VectoR.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/VectoR/main.cpp > CMakeFiles/VectoR.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp > CMakeFiles/VectoR.dir/main.cpp.i
 
 CMakeFiles/VectoR.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VectoR.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/VectoR/main.cpp -o CMakeFiles/VectoR.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp -o CMakeFiles/VectoR.dir/main.cpp.s
 
 CMakeFiles/VectoR.dir/vecc.cpp.o: CMakeFiles/VectoR.dir/flags.make
 CMakeFiles/VectoR.dir/vecc.cpp.o: ../vecc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/VectoR.dir/vecc.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VectoR.dir/vecc.cpp.o -c /Users/barly/CLionProjects/VectoR/vecc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/VectoR.dir/vecc.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VectoR.dir/vecc.cpp.o -c /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp
 
 CMakeFiles/VectoR.dir/vecc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VectoR.dir/vecc.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/CLionProjects/VectoR/vecc.cpp > CMakeFiles/VectoR.dir/vecc.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp > CMakeFiles/VectoR.dir/vecc.cpp.i
 
 CMakeFiles/VectoR.dir/vecc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VectoR.dir/vecc.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/CLionProjects/VectoR/vecc.cpp -o CMakeFiles/VectoR.dir/vecc.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp -o CMakeFiles/VectoR.dir/vecc.cpp.s
 
 # Object files for target VectoR
 VectoR_OBJECTS = \
@@ -115,7 +115,7 @@ VectoR: CMakeFiles/VectoR.dir/main.cpp.o
 VectoR: CMakeFiles/VectoR.dir/vecc.cpp.o
 VectoR: CMakeFiles/VectoR.dir/build.make
 VectoR: CMakeFiles/VectoR.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable VectoR"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable VectoR"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VectoR.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -128,6 +128,6 @@ CMakeFiles/VectoR.dir/clean:
 .PHONY : CMakeFiles/VectoR.dir/clean
 
 CMakeFiles/VectoR.dir/depend:
-	cd /Users/barly/CLionProjects/VectoR/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/barly/CLionProjects/VectoR /Users/barly/CLionProjects/VectoR /Users/barly/CLionProjects/VectoR/cmake-build-debug /Users/barly/CLionProjects/VectoR/cmake-build-debug /Users/barly/CLionProjects/VectoR/cmake-build-debug/CMakeFiles/VectoR.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug /Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/cmake-build-debug/CMakeFiles/VectoR.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/VectoR.dir/depend
 
