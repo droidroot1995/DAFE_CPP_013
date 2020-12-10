@@ -41,10 +41,10 @@ template<typename T, typename A> struct vector_base
 	int sz;
 	int space;
 
-	vector_base() :sz{ 0 }, elem{ nullptr }, space{ 0 } {}
-	vector_base(const A& a, int n)
-		:alloc{ a }, elem{ a.allocate(n) }, sz{ n }, space{ n } {}
-	vector_base(int s);
+	vector_base() :sz{ 0 }, elem{ alloc.allocate(0) }, space{ 0 } {}
+	vector_base(int n) : elem(alloc.allocate(n)), sz(n), space(n) {}
+	vector_base(const A& a, int n) :alloc{a}, elem{ alloc.allocate(n) }, sz{ n }, space{ n } {}
+	vector_base(const vector_base& arg);
 	vector_base(std::initializer_list<T> lst);
 	~vector_base() { alloc.deallocate(elem, space); }
 };
@@ -53,13 +53,17 @@ template<typename T, typename A = std::allocator<T>>
 class vector3 : private vector_base<T,A>
 {
 public:
+	vector3();
+	vector3(int);
+	vector3(std::initializer_list<T> lst);
+
 	vector3(const vector3& arg);
 	vector3& operator=(const vector3& a);
 
 	vector3(vector3&& a);
 	vector3& operator=(vector3&& a);
 
-	~vector3() { delete[] this->elem; }
+	~vector3() {}
 
 	T& at(int n);
 	const T& at(int n) const;

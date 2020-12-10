@@ -1,114 +1,143 @@
 #include "vector3.h"
 
-template<typename T, typename A> vector_base<T, A>::vector_base(int s)
-	:sz{ s },
-	elem{ new T[s] },
-	space{ s }
+template<typename T, typename A>
+vector_base<T, A>::vector_base(const vector_base& arg) 
 {
-	for (int i = 0; i < s; ++i)
+	T* p = alloc.allocate(arg.sz);
+	for (int i = 0; i < arg.sz; ++i)
 	{
-		this->elem[i] = T();
+		alloc.construct(&p[i], arg.elem[i]);
 	}
+	elem = p;
+	sz = arg.sz;
+	space = arg.space;
 }
 
-template<typename T, typename A> vector_base<T, A>::vector_base(std::initializer_list<T> lst)
+template<typename T, typename A>
+vector_base<T, A>::vector_base(std::initializer_list<T> lst)
 	:sz{ static_cast<int>(lst.size()) },
-	elem{ new T[this->sz] },
-	space{ this->sz }
+	elem{ alloc.allocate(sz) },
+	space{ sz }
+{
+	std::copy(lst.begin(), lst.end(), elem);
+}
+
+
+
+template<typename T, typename A>
+vector3<T, A>::vector3() 
+	: vector_base<T, A>() {}
+
+template<typename T, typename A>
+vector3<T, A>::vector3(int s) 
+	: vector_base<T, A>(s) 
+{
+	for (int i = 0; i < s; ++i) this->alloc.construct(&this->elem[i], T());
+}
+
+template<typename T, typename A>
+vector3<T, A>::vector3(std::initializer_list<T> lst) 
+	: vector_base<T, A>(lst) 
 {
 	std::copy(lst.begin(), lst.end(), this->elem);
 }
 
 
 
-template<typename T, typename A >vector3<T, A>::vector3(const vector3<T, A>& arg)
-	:sz{ arg.sz },
-	elem{ new T[arg.sz] }
-{
-	std::copy(arg.elem, arg.elem +sz, elem);
-}
+template<typename T, typename A >
+vector3<T, A>::vector3(const vector3<T, A>& arg)
+	: vector_base<T, A>(arg) {}
 
-template<typename T, typename A> vector3<T, A>& vector3<T, A>::operator=(const vector3<T, A>& a)
+template<typename T, typename A> 
+vector3<T, A>& vector3<T, A>::operator=(const vector3<T, A>& a)
 {
 	if (this == &a)
 	{
 		return *this;
 	}
 
-	if (a.sz <= space)
+	if (a.sz <= this->space)
 	{
 		for (int i = 0; i < a.sz; ++i)
 		{
-			elem[i] = a.elem[i];
+			this->elem[i] = a.elem[i];
 		}
-		sz = a.sz;
+		this->sz = a.sz;
 		return *this;
 	}
 
-	T* p = new T[a.this->sz];
-	for (int i = 0; i < a.this->sz; ++i)
+	T* p = this->alloc.allocate(this->sz);
+	for (int i = 0; i < a.sz; ++i)
 	{
-		p[i] = a.this->elem[i];
+		p[i] = a.elem[i];
 	}
-	delete[] this->elem;
-	this->space = this->sz = a.this->sz;
+	this->alloc.destroy(this->elem);
+	this->space = this->sz = a.sz;
 	this->elem = p;
 	return *this;
 }
 
 
 
-template<typename T, typename A> vector3<T, A>::vector3(vector3<T, A>&& a)
-	:sz{ a.sz },
-	elem{ a.elem }
+template<typename T, typename A> 
+vector3<T, A>::vector3(vector3<T, A>&& a)
 {
-	a.this->sz = 0;
-	a.this->elem = nullptr;
+	this->sz = a.sz;
+	this->elem = a.elem;
+	this->space = this->sz;
+	a.sz = 0;
+	a.elem = nullptr;
+	a.space = a.sz;
 }
 
-template<typename T, typename A> vector3<T, A>& vector3<T, A>::operator=(vector3<T, A>&& a)
+template<typename T, typename A> 
+vector3<T, A>& vector3<T, A>::operator=(vector3<T, A>&& a)
 {
-	delete[] this->elem;
-	this->elem = a.this->elem;
-	this->sz = a.this->sz;
-	a.this->elem = nullptr;
-	a.this->sz = 0;
+	this->alloc.destroy(this->elem);
+	this->elem = a.elem;
+	this->sz = a.sz;
+	a.elem = nullptr;
+	a.sz = 0;
 	return *this;
 }
 
 
 
-template<typename T, typename A> T& vector3<T, A>::at(int n)
+template<typename T, typename A>
+T& vector3<T, A>::at(int n)
 {
-	if (n < 0 || this->sz <= n) throw Range_error(n);
-	return this->elem[n];
+	if (n <= 0 || this->sz > n) return this->elem[n];
+	throw Range_error(n);
 }
 
-template<typename T, typename A> const T& vector3<T, A>::at(int n) const
+template<typename T, typename A> 
+const T& vector3<T, A>::at(int n) const
 {
-	if (n < 0 || this->sz <= n) throw Range_error(n);
-	return this->elem[n];
+	if (n <= 0 || this->sz > n) return this->elem[n];
+	throw Range_error(n);
 }
 
 
 
-template<typename T, typename A> void vector3<T, A>::resize(int newsize, T val)
+template<typename T, typename A> 
+void vector3<T, A>::resize(int newsize, T val)
 {
 	reserve(newsize);
 	for (int i = this->sz; i < newsize; i++)
 	{
-		alloc.construct(&this->elem[i], val);
+		this->alloc.construct(&this->elem[i], val);
 	}
 	for (int i = 0; i < newsize; i++)
 	{
-		alloc.destroy(&this->elem[i]);
+		this->alloc.destroy(&this->elem[i]);
 	}
 	this->sz = newsize;
 }
 
-template<typename T, typename A> void vector3<T, A>::push_back(const T& val)
+template<typename T, typename A> 
+void vector3<T, A>::push_back(const T& val)
 {
-	if (this->space == 0)
+	if (!this->space)
 	{
 		reserve(8);
 	}
@@ -119,24 +148,24 @@ template<typename T, typename A> void vector3<T, A>::push_back(const T& val)
 			reserve(2 * this->space);
 		}
 	}
-	alloc.construct(&this->elem[this->sz], val);
+	this->alloc.construct(&this->elem[this->sz], val);
 	++this->sz;
 }
 
-template<typename T, typename A> 
-void vector3<T, A>::reserve(int newalloc)
+template<typename T, typename A>
+void vector3<T, A>::reserve(int newalloc) 
 {
-	if (newalloc <= this->this->space)
+	if (newalloc <= this->space)
 	{
 		return;
 	}
-	vactor_base<T,A> b(this->alloc,newalloc);
-	uninitialized_copy(b.this->elem, &Ü.this->elem[this->this->sz], this->this->elem);
-	for (int i = 0; i < THIS->this->sz; ++i)
+	vector_base<T, A> b(this->alloc, newalloc);
+	std::uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
+	for (int i = 0; i < this->sz; ++i)
 	{
-		this->alloc.destroy(&this->this->elem[i]);
+		this->alloc.destroy(&this->elem[i]);
 	}
-	swap<vector_base<T, A>>(*this, b);
+	std::swap<vector_base<T, A>>(*this, b);
 }
 
 template class vector3<int>;
