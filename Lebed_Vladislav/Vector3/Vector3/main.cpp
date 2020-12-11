@@ -8,6 +8,7 @@ struct Range_error :std::out_of_range
 	Range_error(int i) :std::out_of_range("Range error"), index{ i }{}
 };
 
+/*
 template<typename T>
 class allocator
 {
@@ -23,7 +24,7 @@ T* allocator<T>::allocate(int n)
 {
 	// c
 	// return static_cast<T*>(malloc(sizeof (T) * n))
-	
+
 	// c++
 	return reinterpret_cast<T*>(new char[sizeof(T) * n]);
 }
@@ -51,6 +52,7 @@ void allocator<T>::destroy(T* p)
 	// c++
 	p->~T();
 }
+*/
 
 template<typename T, typename A>
 struct vector_base
@@ -81,7 +83,7 @@ template<typename T, typename A>
 vector_base<T, A>::vector_base(const vector_base& a)
 {
 	T* p = alloc.allocate(a.sz);
-	for (int i = 0; i < a.sz; ++i) 
+	for (int i = 0; i < a.sz; ++i)
 		alloc.construct(&p[i], a.elem[i]);
 	elem = p;
 	sz = a.sz;
@@ -95,7 +97,7 @@ vector_base<T, A>::vector_base(std::initializer_list<T> lst)
 	std::copy(lst.begin(), lst.end(), elem);
 }
 
-template <typename T, typename A = std::allocator<T>> 
+template <typename T, typename A = std::allocator<T>>
 class vector : private vector_base<T, A>
 {
 
@@ -134,7 +136,7 @@ public:
 
 	int capacity() const { return space; }	// capacity()
 
-	void resize(int newsize, T val = T());	// resize()
+	void resize(int newsize);	// resize()
 
 	void push_back(const T& val);			// push_back()
 };
@@ -194,19 +196,19 @@ vector<T, A>& vector<T, A>::operator= (const vector&& a)
 }
 
 template<typename T, typename A>
-void vector<T,A>::reserve(int newalloc)
+void vector<T, A>::reserve(int newalloc)
 {
 	if (newalloc <= this->space)
 		return;
 	vector_base<T, A>
 		b(this->alloc, newalloc);
-	std::uninitialized_copy(elem, elem + sz , b.elem);
+	std::uninitialized_copy(elem, elem + sz, b.elem);
 	b.sz = sz;
 	for (int i = 0; i < this->sz; ++i)
 		this->alloc.destroy(&this->elem[i]);
 	this->alloc.deallocate(this->elem, this->space);
 	//std::swap<vector_base<T, A>&>(static_cast<vector_base<T, A>&>(*this), b);
-	this->elem = b.elem; 
+	this->elem = b.elem;
 	this->sz = b.sz;
 	this->space = b.space;
 	b.elem = nullptr;
@@ -214,7 +216,7 @@ void vector<T,A>::reserve(int newalloc)
 }
 
 template<typename T, typename A>
-void vector<T, A>::resize(int newsize, T val)
+void vector<T, A>::resize(int newsize)
 {
 	reserve(newsize);
 	if (newsize < sz)
@@ -277,19 +279,50 @@ T& vector<T, A>::at(int n)
 
 int main()
 {
-	vector<int> v1 = { 10, 11, 12 };
-	vector<int> v = {1, 2, 3, 4, 5, 6};
-	v = v1;
-	vector<std::string> vstr= { "I", "have", "done", "vector" };
-	v.push_back(5);
-	for (int i = 0; i < v.size(); ++i)
-		std::cout << v[i] << ' ';
+	vector<int> vi;
+	vi.push_back(55);
+	vi.push_back(44);
+	for (int i = 0; i < vi.size(); ++i)
+		std::cout << vi[i] << ' ';
 
 	std::cout << std::endl;
 
+	vector<int> v = { 1, 2, 3, 4, 5, 6 };
+	vector<int> v1 = { 10, 11, 12 };
+
+	std::cout << "vector v1 : ";
+	for (int i = 0; i < v1.size(); ++i)
+		std::cout << v1[i] << ' ';
+	std::cout << std::endl;
+
+	std::cout << "vector v : ";
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << v[i] << ' ';
+	std::cout << std::endl;
+
+	std::cout << "size v1: " << v1.size() << std::endl;
+	std::cout << "size v: " << v.size() << std::endl;
+
+	v = v1;
+
+	std::cout << "vector v after v = v1: ";
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << v[i] << ' ';
+	std::cout << std::endl;
+
+	v.push_back(5);
+	std::cout << "vector v after v.push_back(5): ";
+	for (int i = 0; i < v.size(); ++i)
+		std::cout << v[i] << ' ';
+	std::cout << std::endl;
+
+	vector<std::string> vstr = { "I", "have", "done", "vector" };
 	for (int i = 0; i < vstr.size(); ++i)
 		std::cout << vstr[i] << ' ';
 
 	std::cout << std::endl;
+
+	std::cout << "space v: " << v.capacity() << std::endl;
+	std::cout << "space v1: " << v1.capacity() << std::endl;
 	return 0;
 }
