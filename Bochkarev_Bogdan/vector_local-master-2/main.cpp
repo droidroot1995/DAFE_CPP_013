@@ -19,8 +19,13 @@ int main(int argc, const char * argv[]) {
     vc[3] = "abc";
     std::cout << v3.get(0) << std::endl;
     v3.set(0, 4.0);
+    Vector<std::string> vc1 = vc;
+    
+    vc.push_back("sad");
+    
+    Vector<double> vi = {1., 2., 3., 4.};
     for (int i=0; i<v1.size(); ++i) {
-        v1.set(i,1.1*i);
+        v1[i] = 1.1*i;
         std::cout << "v[" << i << "]==" << v1.get(i) << std::endl;
     }
     for (int i=0; i<v2.size(); ++i) {
@@ -34,6 +39,12 @@ int main(int argc, const char * argv[]) {
     }
     for (int i=0; i<vc.size(); ++i) {
         std::cout << "v[" << i << "]==" << vc[i] << std::endl;
+    }
+    for (int i=0; i<vc1.size(); ++i) {
+        std::cout << "v[" << i << "]==" << vc1[i] << std::endl;
+    }
+    for (int i=0; i<vi.size(); ++i) {
+        std::cout << "v[" << i << "]==" << vi[i] << std::endl;
     }
     return 0;
 }

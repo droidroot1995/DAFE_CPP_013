@@ -35,6 +35,7 @@ struct vector_base {
     vector_base(const A&, int);
     vector_base(const vector_base&);
     vector_base(std::initializer_list<T>);
+    vector_base(vector_base&&);
     ~vector_base();
 };
 
