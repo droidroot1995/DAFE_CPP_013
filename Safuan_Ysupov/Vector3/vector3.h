@@ -39,12 +39,6 @@ unique_ptr.*/
 //дает возможность управлять выделением и освобождением памяти
 //для элементов контейнера.
 
-struct Range_error:out_of_range //Расширенное сообщение о выходе
-{                               //за пределы диапазона
-    int index;
-    Range_error(int i):
-        out_of_range{"Range error"}, index{i}{}
-};
 
 
 // класс vector _ base работает с памятью, а не
@@ -75,13 +69,13 @@ class Vector : private vector_base<T, A> {
     */
 public:
 
-    Vector(); //конструктор по умолчанию
+    Vector():vector_base<T, A>(A(), 0) { } //конструктор по умолчанию
 
     // Конструктор: размещаает в памяти s чисел
     // типа double, направляет на них указатель
     // elem и сохраняет s в член sz
     //Конструктор со словом explicit не допускает неявные преобразования
-    explicit Vector(size_t s);
+    Vector(size_t s);
 
     Vector(const Vector& a); //Конструктор копирования (копирующая инициализация)
     Vector& operator=(const Vector& a); //Конструктор присваивания (копирующее присваивание)
@@ -89,13 +83,10 @@ public:
     Vector(Vector&& a);          //Перемещающий конструктор
     Vector& operator=(Vector&& a); //Перемещающее присваивание
 
-    T& at(int n);       //доступ с проверкой
-    const T& at(int n) const; //доступ с проверкой
-
     T &operator[](int n) //Для неконстантных векторов, Доступ без проверки
     { return this->elem[n]; }
 
-    const T& operator[](int n) const //для константных векторов без проверки
+    const T& operator[] (int n) const //для константных векторов без проверки
     { return this->elem[n]; }
 
     //Конструктор со списком инициализации

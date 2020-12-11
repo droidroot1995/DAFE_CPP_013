@@ -2,15 +2,16 @@
 // RAII захват ресурса есть инициализация Resource Acquisition Is Initialization
 //Мы используем класс Range_error, чтобы облегчить отладку операции
 //индексирования.
-//Запутался между Vector и vector
+
 
 
 // vector_base realisation
 
 template<typename T, typename A>
 vector_base<T, A>::vector_base():
-    elem{alloc.allocate(0)}, sz{0}, space{0}{}
+    elem{nullptr}, sz{0}, space{0} { }
 
+//перемещающий конструктор
 template<typename T, typename A>
 vector_base<T, A>::vector_base(vector_base && a):
     elem{a.elem}, sz{a.sz}, space{a.space}
@@ -22,7 +23,7 @@ vector_base<T, A>::vector_base(vector_base && a):
 
 template<typename T, typename A>
 vector_base<T, A>::vector_base(const A& a, size_t s):
-    alloc{a}, elem(alloc.allocate(s)), sz{0}, space{s}{}
+    alloc{a}, elem{alloc.allocate(s)}, sz{s}, space{s} {}
 
 template<typename T, typename A>vector_base<T,A>& vector_base<T,A> ::
 operator=(vector_base<T, A> && a)
@@ -47,9 +48,6 @@ vector_base<T, A>:: ~vector_base()
 
 // Vector realisation
 // constructors and metods
-
-template<typename T, typename A>
-Vector<T, A> :: Vector(): vector_base<T, A>(A(), 0) {}
 
 //Конструктор для вектора размером s
 template<typename T, typename A>
@@ -95,17 +93,17 @@ template<typename T, typename A> Vector<T,A>::Vector(Vector<T, A> && a):
     vector_base<T, A>(static_cast<vector_base<T, A>&&>(a))
 // Копируем elem и sz из а
 {
-    this-> sz=a.sz;
-    this-> elem=a.elem;
-    this-> space=this->sz;
-    a.sz=0;         //Делаем вектор а пустым
-    a.elem=nullptr;
-    a.space=a.sz;
+//    this-> sz=a.sz;
+//    this-> elem=a.elem;
+//    this-> space=this->sz;
+//    a.sz=0;         //Делаем вектор а пустым
+//    a.elem=nullptr;
+//    a.space=a.sz;
 }
 
 //Конструктор другим вектором, копирующая инициализация
 template<typename T, typename A>Vector<T,A> ::
-Vector(const Vector<T, A>& arg) : vector_base<T, A>{A(), arg.size()}
+Vector(const Vector& arg) : vector_base<T, A>{A(), arg.size()}
 {
     uninitialized_copy(arg.elem, &arg.elem[this->sz], this->elem);
 }
@@ -130,10 +128,11 @@ template<typename T, typename A>void Vector<T,A>::reserve(size_t newalloc)
     if (newalloc <= this->space) return; //Размер никогда не уменьшается
     vector_base<T,A>
             new_base(this->alloc, newalloc); //Выделение новой памяти
-    std::uninitialized_copy(this->elem, this->elem + this->sz, new_base.elem); //копирование new_base.elem, &new_base.elem[this->sz], this->elem
+    std::uninitialized_copy(this->elem, &this->elem[this->sz], new_base.elem); //копирование new_base.elem, &new_base.elem[this->sz], this->elem
 
     for (size_t i=0; i<this->sz; i++)
         this->alloc.destroy(&this->elem[i]); //удаление старых объектов
+
     std::swap<vector_base<T,A>>(*this, new_base); //Обмен представлений
 
     this->sz=new_base.sz;
@@ -160,13 +159,13 @@ void Vector<T,A>::resize(size_t newsize, T val) //, T val=T()
         T* current = this->elem+this->sz;
         try
         {
-           for (; current < this->elem + newsize; current++)
+           for (; current < this->elem + newsize; ++current)
                this->alloc.construct(current, T());
            this->sz=newsize;
         }
         catch (...)
         {
-            for (T* ptr = this-> elem+ this->sz; ptr < current; ptr++)
+            for (T* ptr = this-> elem+ this->sz; ptr < current; ++ptr)
                 this->alloc.destroy(ptr);
             throw;
         }
@@ -183,13 +182,6 @@ template<typename T, typename A>void Vector<T,A>::push_back(const T& val)
     ++this->sz;                        //Увеличиваем количество элементов (Размер)
 }
 
-//Проверка на вместимость
-template<typename T, typename A> T& Vector<T,A>::at(int n)
-{
-    if ((n<0)||(this->sz<=n))
-        throw Range_error(n);
-    return this->elem[n];
-}
 
 
 
