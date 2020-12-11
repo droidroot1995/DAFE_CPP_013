@@ -1,8 +1,9 @@
 #include <initializer_list>
 #include <algorithm>
+#include <memory>
 
-
-template<typename T> class vector3 {
+template<typename T, typename A = std::allocator<T>> class vector3 {
+	A alloc;
 	int sz;
 	T* elem;
 	int space;
@@ -58,19 +59,19 @@ public:
 
 	void reserve(int newalloc) {
 		if (newalloc <= space) return;
-		T* p = new T[newalloc];
-		for (int i = 0; i < sz; ++i)
-			p[i] = elem[i];
-		delete[] elem;
+		T* p = alloc.allocate(newalloc);
+		for (int i = 0; i < sz; ++i) alloc.construct(&p[i], elem[i]);
+		for (int i = 0; i < sz; ++i) alloc.destroy(&elem[i]);
+		alloc.deallocate(elem, space);
 		elem = p;
 		space = newalloc;
 	}
-	void push_back(const T& d) {
+	void push_back(const T& val) {
 		if (space == 0)
 			reserve(8);
 		else if (sz == space)
 			reserve(2 * space);
-		elem[sz] = d;
+		alloc.construct(&elem[sz], val);
 		++sz;
 	}
 	int capacity() const {
@@ -78,8 +79,8 @@ public:
 	}
 	void resize(int newsize) {
 		reserve(newsize);
-		for (int i = sz; i < newsize; ++i)
-			elem[i] = 0;
+		for (int i = sz; i < newsize; ++i) alloc.construct(&elem[i], 0);
+		for (int i = sz; i < newsize; ++i) alloc.destroy(&elem[i]);
 		sz = newsize;
 	}
 	int size() { return sz; }
