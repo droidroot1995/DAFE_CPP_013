@@ -14,10 +14,20 @@ vector_base<T, A>::vector_base(const vector_base& arg)
 }
 
 template<typename T, typename A>
+vector_base<T, A>::vector_base( vector_base&& arg)
+{
+	elem = arg.elem;
+	sz = arg.sz;
+	space = arg.space;
+	arg.elem = nullptr;
+	arg.sz = arg.space = 0;
+}
+
+template<typename T, typename A>
 vector_base<T, A>::vector_base(std::initializer_list<T> lst)
-	:sz{ static_cast<int>(lst.size()) },
-	elem{ alloc.allocate(sz) },
-	space{ sz }
+	:sz{ 0 },
+	elem{ alloc.allocate(static_cast<int>(lst.size())) },
+	space{ static_cast<int>(lst.size()) }
 {
 	std::copy(lst.begin(), lst.end(), elem);
 }
@@ -39,7 +49,9 @@ template<typename T, typename A>
 vector3<T, A>::vector3(std::initializer_list<T> lst) 
 	: vector_base<T, A>(lst) 
 {
-	std::copy(lst.begin(), lst.end(), this->elem);
+	std::uninitialized_copy(this->elem, this->elem + this->sz, lst.begin());
+	this->sz = static_cast<int>(lst.size());
+	//std::copy(lst.begin(), lst.end(), this->elem);
 }
 
 
@@ -160,12 +172,19 @@ void vector3<T, A>::reserve(int newalloc)
 		return;
 	}
 	vector_base<T, A> b(this->alloc, newalloc);
-	std::uninitialized_copy(b.elem, &b.elem[this->sz], this->elem);
+	std::uninitialized_copy(this->elem,this->elem+this->sz, b.elem);
+	b.sz = this->sz;
 	for (int i = 0; i < this->sz; ++i)
 	{
 		this->alloc.destroy(&this->elem[i]);
 	}
-	std::swap<vector_base<T, A>>(*this, b);
+	this->alloc.deallocate(this->elem, this->space);
+	this->elem = b.elem;
+	this->sz = b.sz;
+	this->space = b.space;
+	b.elem = nullptr;
+	b.sz = b.space = 0;
+	//std::swap<vector_base<T, A>>(*this, b);
 }
 
 template class vector3<int>;

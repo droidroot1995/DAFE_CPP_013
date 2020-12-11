@@ -4,6 +4,8 @@
 #include <memory>
 #include <stdexcept>
 
+#include "allocators.h"
+
 struct Range_error : std::out_of_range {
 	int index;
 	Range_error(int i) : std::out_of_range("Range error"), index{ i } {};
@@ -43,14 +45,15 @@ template<typename T, typename A> struct vector_base
 
 	vector_base() :sz{ 0 }, elem{ alloc.allocate(0) }, space{ 0 } {}
 	vector_base(int n) : elem(alloc.allocate(n)), sz(n), space(n) {}
-	vector_base(const A& a, int n) :alloc{a}, elem{ alloc.allocate(n) }, sz{ n }, space{ n } {}
+	vector_base(const A& a, int n) :alloc{ a }, elem{ alloc.allocate(n) }, sz{ 0 }, space{ n } {}
 	vector_base(const vector_base& arg);
 	vector_base(std::initializer_list<T> lst);
+	vector_base(vector_base&& arg);
 	~vector_base() { alloc.deallocate(elem, space); }
 };
 
-template<typename T, typename A = std::allocator<T>> 
-class vector3 : private vector_base<T,A>
+template<typename T, typename A = std::allocator<T>>
+class vector3 : private vector_base<T, A>
 {
 public:
 	vector3();

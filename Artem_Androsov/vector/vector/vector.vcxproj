@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="allocators.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="allocators.h" />
     <ClInclude Include="vector1.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector3.h" />

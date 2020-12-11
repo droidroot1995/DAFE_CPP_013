@@ -57,7 +57,8 @@ int main()
 	//vector3 using
 	{
 		vector3<int> v31(3);
-		vector3<double> v32{2,6,4,9,5};
+		vector3<double> v32{2,6,5};
+		vector3<int> v33(5);
 		std::cout << "v31 size is " << v31.size() << std::endl;
 		std::cout << std::endl;
 
@@ -65,10 +66,21 @@ int main()
 		v31[1] = 4;
 		v31[2] = 7;
 
+		v33 = v31;
+
+		std::cout << v33[0] << ' ' << v33[1] << ' ' << v33[2] << std::endl;
+		std::cout << std::endl;
+
 		std::cout << v31[0] << ' ' << v31[1] << ' ' << v31[2] << std::endl;
+		std::cout << std::endl;
+
+		std::cout << v32[0] << ' ' << v32[1] << ' ' << v32[2] << std::endl;
 		std::cout << std::endl;
 
 		v31.push_back(4);
 		std::cout << v31[0] << ' ' << v31[1] << ' ' << v31[2] << ' ' << v31[3] << std::endl;
+
+		//v31.resize(5);
+		//std::cout<< v31.size();
 	}
 }
