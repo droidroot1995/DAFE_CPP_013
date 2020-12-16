@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/main.cpp
+iostream
+-
+vecc.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
+
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.cpp
+vecc.h
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
+
+/Users/barly/DAFE_CPP_013/Iacmenkov_Alex/vector/vecc.h
+initializer_list
+-
+algorithm
+-
+memory
+-
+iostream
+-
+cstdlib
+-
+stdexcept
+-
+
