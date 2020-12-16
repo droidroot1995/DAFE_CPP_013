@@ -1,4 +1,16 @@
+Vector1/.vs/
+Vector2/.vs/
+Vector3/.vs/
+Vector1/Debug/
+Vector2/Debug/
+Vector3/Debug/
+Vector1/Debug/
+Vector2/Debug/
+Vector3/Debug/
+Vector1/Vector1.vcxproj.user/
+Vector2/Vector2.vcxproj.user/
+Vector3/Vector3.vcxproj.user/
 Calculator/.vs/
 Calculator/Debug/
 Calculator/Calculator/Debug/
-Calculator/Calculator/Calculator.vcxproj.user
+Calculator/Calculator/Calculator.vcxproj.user/
